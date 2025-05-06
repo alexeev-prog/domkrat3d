@@ -1,3 +1,15 @@
+commit 3a4273bf044ccdc3c7b5a7fac5386bfba03d2f3a
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Tue May 6 23:46:46 2025 +0700
+
+    restructure project
+
+commit db8830822d1aa9b19cff4167ea354b8b836651af
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Tue May 6 23:41:25 2025 +0700
+
+    update changelog
+
 commit 0eb7b4035e3068a6001fd4661bf38fe0010df3dd
 Author: Alexeev Bronislav <alexeev.dev@mail.ru>
 Date:   Tue May 6 23:41:15 2025 +0700

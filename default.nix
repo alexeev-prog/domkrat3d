@@ -9,6 +9,7 @@ pkgs.mkShell {
     pkgs.gcc         # GCC compiler (includes standard library support)
     pkgs.glew        # GLEW (OpenGL Extension Wrangler Library)
     pkgs.glm         # GLM (OpenGL Mathematics)
+    pkgs.cmake       # Cmake
   ];
 
   shellHook = ''

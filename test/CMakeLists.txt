@@ -15,7 +15,9 @@ endif()
 # ---- Tests ----
 
 add_executable(domkrat3d_test source/domkrat3d_test.cpp)
-target_link_libraries(domkrat3d_test PRIVATE domkrat3d::domkrat3d)
+target_link_libraries(
+	domkrat3d_test PRIVATE domkrat3d::domkrat3d
+)
 target_compile_features(domkrat3d_test PRIVATE cxx_std_17)
 
 add_test(NAME domkrat3d_test COMMAND domkrat3d_test)
