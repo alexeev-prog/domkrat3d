@@ -1,3 +1,15 @@
+commit 0eb7b4035e3068a6001fd4661bf38fe0010df3dd
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Tue May 6 23:41:15 2025 +0700
+
+    update doxyfile
+
+commit 76d1e0ad1c44cfa4682d1b722f92aadd63d6fca8
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Tue May 6 23:37:57 2025 +0700
+
+    update changelog
+
 commit feef8163f11c1c3be628236d4c6f381bdade9ef5
 Author: Alexeev Bronislav <alexeev.dev@mail.ru>
 Date:   Tue May 6 23:28:28 2025 +0700
