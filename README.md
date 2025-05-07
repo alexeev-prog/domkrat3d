@@ -8,20 +8,6 @@
     <a href="https://alexeev-prog.github.io/domkrat3d/"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="#-key-features">Key Features</a>
-    ·
-    <a href="#-getting-started">Getting Started</a>
-    ·
-    <a href="#-usage-examples">Basic Usage</a>
-    ·
-    <a href="#-specifications">Specification</a>
-    ·
-    <a href="#status">GithubActions Status</a>
-    ·
-    <a href="#building-and-installing">Building and installing</a>
-    .
-    <a href="#contributing">Contributing</a>
-    .
     <a href="https://alexeev-prog.github.io/domkrat3d/">Documentation</a>
     ·
     <a href="https://github.com/alexeev-prog/domkrat3d/blob/main/LICENSE">License</a>
