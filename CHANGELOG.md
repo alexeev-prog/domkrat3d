@@ -1,3 +1,9 @@
+commit 6df20346bd50d55a5207c3ffc3ec2b151c1f4e4a
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Wed May 7 20:22:20 2025 +0700
+
+    update readme
+
 commit 6e2c9f3ca95c60da2f34c2c78e62ca6e81acb898
 Author: Alexeev Bronislav <alexeev.dev@mail.ru>
 Date:   Wed May 7 20:20:36 2025 +0700

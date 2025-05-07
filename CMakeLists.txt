@@ -5,7 +5,7 @@ include(cmake/prelude.cmake)
 project(
     domkrat3d
     VERSION 0.1.0
-    DESCRIPTION "Lite 3D engine in C++ OpenGL"
+    DESCRIPTION "Lite 3D Game Engine in C++ Vulkan"
     HOMEPAGE_URL "https://github.com/alexeev-prog/domkrat3d"
     LANGUAGES CXX
 )
@@ -18,6 +18,12 @@ include(cmake/variables.cmake)
 add_library(
     domkrat3d_domkrat3d
     source/domkrat3d.cpp
+    source/graphics/core.cpp
+    source/physics/core.cpp
+    source/physics/kinematics.cpp
+)
+target_link_libraries(
+  domkrat3d_domkrat3d glfw vulkan
 )
 add_library(domkrat3d::domkrat3d ALIAS domkrat3d_domkrat3d)
 

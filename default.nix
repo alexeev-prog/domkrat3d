@@ -19,13 +19,17 @@ pkgs.mkShell {
     pkgs.stb                                # Single-file public domain libraries for C/C++
     pkgs.entt                               # Header-only, tiny and easy to use library for game programming and much more written in modern C++
     pkgs.vulkan-extension-layer             # Layers providing Vulkan features when native support is unavailable
-    pkgs.vulkan-cts                         # Khronos Vulkan Conformance Tests
     pkgs.sfml                               # Simple and fast multimedia library
+    pkgs.clang
+    pkgs.clang-tools
+    pkgs.clang-tidy-sarif
+    pkgs.clang-analyzer
+    pkgs.libclang
   ];
 
   shellHook = ''
     # Ensure proper environment setup for GCC and glibc
-    export CPPFLAGS="-I${pkgs.glfw}/include -I${pkgs.glew}/include -I${pkgs.mesa}/include -I${pkgs.glm}/include"
+    export CPPFLAGS="-I${pkgs.glfw}/include -I${pkgs.glew}/include -I${pkgs.mesa}/include -I${pkgs.glm}/include -I${pkgs.vulkan-headers}"
     export LDFLAGS="-L${pkgs.glfw}/lib -L${pkgs.mesa}/lib -L${pkgs.glew}/lib"
     
     # Correct the CXXFLAGS by removing `.dev` from the GCC path

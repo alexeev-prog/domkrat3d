@@ -14,7 +14,7 @@ BOLD = '\033[1m'  # No Color
 
 # File Extension filter. You can add new extension 
 cpp_extensions = (".cxx",".cpp",".c", ".hxx", ".hh", ".cc", ".hpp") 
-IGNORED_DIRS = ['build', '.git', 'cmake', 'docs']
+IGNORED_DIRS = ['build', '.git', 'cmake', 'docs', 'utils', 'CMakeFiles']
 
 CLANG_FORMAT = 'clang-format'
 SPACETABS = './space2tabs.sh'
@@ -89,17 +89,13 @@ def main():
 	# header files) and apply the clang formatting 
 	# Please note "-style" is for standard style options 
 	# and "-i" is in-place editing 
-
-	if len(sys.argv) < 1:
-	    return
 	
-	for root, dirs, files in os.walk(Path(sys.argv[1])):
+	for root, dirs, files in os.walk(os.getcwd()):
 		if len(set(root.split('/')).intersection(IGNORED_DIRS)) > 0:
 			continue
 		for file in files: 
 			if file.endswith(cpp_extensions):
 				print(f"{BOLD}Format {file}: {root}/{file}{NC}")
-				os.system(f'codespell -w {root}/{file}')
 				os.system(f'clang-tidy --fix {root}/{file}')
 				os.system(f"{CLANG_FORMAT} -i -style=file {root}/{file}")
 				print(f"{GREEN}Formatting completed successfully: {root}/{file}{NC}")
