@@ -1,3 +1,15 @@
+commit 9198e0b85edcc71ab7c979bc219b1f0c8e85faa1
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Wed May 7 20:15:42 2025 +0700
+
+    improve MD files and default nix
+
+commit cc35690484321f10b4247769d5db10ca7251a72d
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Wed May 7 00:27:53 2025 +0700
+
+    restructure project
+
 commit 3a4273bf044ccdc3c7b5a7fac5386bfba03d2f3a
 Author: Alexeev Bronislav <alexeev.dev@mail.ru>
 Date:   Tue May 6 23:46:46 2025 +0700

@@ -39,6 +39,11 @@
     <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/alexeev-prog/domkrat3d?style=for-the-badge">
 </p>
 
+<div align='center'>
+    <img src="https://github.com/alexeev-prog/domkrat3d/actions/workflows/static.yml/badge.svg">
+    <img src="https://github.com/alexeev-prog/domkrat3d/actions/workflows/ci.yml/badge.svg">
+</div>
+
 <p align="center">
     <img src="https://raw.githubusercontent.com/alexeev-prog/domkrat3d/refs/heads/main/docs/pallet-0.png">
 </p>
@@ -56,23 +61,14 @@ Welcome to DOMKRAT3D - blazing fast, lightweight 3D game engine in Python! You c
 
 Our engine is easy-to-learn and lite.
 
-# Status
+> [!NOTE]
+> Building and installion: See the [BUILDING](BUILDING.md) document.
 
-<div align='center'>
-    <img src="https://github.com/alexeev-prog/domkrat3d/actions/workflows/static.yml/badge.svg">
-    <img src="https://github.com/alexeev-prog/domkrat3d/actions/workflows/ci.yml/badge.svg">
-</div>
+ > [!NOTE]
+ > Contributing: See the [CONTRIBUTING](CONTRIBUTING.md) document.
 
-# Building and installing
-
-See the [BUILDING](BUILDING.md) document.
-
-# Contributing
-
-See the [CONTRIBUTING](CONTRIBUTING.md) document.
-
-# Licensing
-[GNU GPL V3](./LICENSE)
+> [!NOTE]
+> Licensing: [GNU GPL V3](./LICENSE)
 
 ---
 
