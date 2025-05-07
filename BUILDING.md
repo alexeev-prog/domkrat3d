@@ -1,5 +1,36 @@
 # Building with CMake
 
+## Dependencies
+Install this dependencies to build domkrat3d:
+
+```bash
+glfw                               # GLFW for window/context management
+libGL                              # OpenGL library (core OpenGL)
+mesa                               # Mesa (provides OpenGL implementation)
+freeglut                           # FreeGLUT (alternative to GLUT)
+gcc                                # GCC compiler (includes standard library support)
+glew                               # GLEW (OpenGL Extension Wrangler Library)
+glm                                # GLM (OpenGL Mathematics)
+cmake                              # Cmake
+vulkan-tools                       # Khronos official Vulkan Tools and Utilities
+vulkan-utility-libraries           # Set of utility libraries for Vulkan
+vulkan-headers                     # Vulkan Header files and API registry
+vulkan-validation-layers           # Official Khronos Vulkan validation layers
+vulkan-memory-allocator            # Easy to integrate Vulkan memory allocation library
+vulkan-loader                      # LunarG Vulkan loader
+stb                                # Single-file public domain libraries for C/C++
+entt                               # Header-only, tiny and easy to use library for game programming and much more written in modern C++
+vulkan-extension-layer             # Layers providing Vulkan features when native support is unavailable
+vulkan-cts                         # Khronos Vulkan Conformance Tests
+sfml                               # Simple and fast multimedia library
+```
+
+Or, if use NixOS, you would can start nix-shell:
+
+```bash
+nix-shell .
+```
+
 ## Build
 
 This project doesn't require any special command-line flags to build to keep
