@@ -1,14 +1,7 @@
 { pkgs ? import <nixpkgs> {} }:
 let
   libs = with pkgs; [
-    libGL
-    SDL2
-    SDL2_ttf
-    SDL2_mixer
-    SDL2_image
-    SDL2_sound
-    SDL2_gfx
-    SDL2_net
+  	boost
     cmake
     glfw
     clang
@@ -32,6 +25,7 @@ let
     vulkan-tools-lunarg
     vulkan-extension-layer
   ];
+  lib = libs;
 in
 pkgs.mkShell {
   nativeBuildInputs = with pkgs; [
@@ -40,6 +34,7 @@ pkgs.mkShell {
       	jdinhlife.gruvbox
         ms-vscode.cpptools
         ms-vscode.cpptools-extension-pack
+        llvm-vs-code-extensions.vscode-clangd
       ];
     })
     cppcheck
@@ -57,12 +52,21 @@ pkgs.mkShell {
   LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath libs;
   VK_LAYER_PATH = "${pkgs.vulkan-validation-layers}/share/vulkan/explicit_layer.d";
   VULKAN_SDK = "${pkgs.vulkan-validation-layers}/share/vulkan/explicit_layer.d";
-  XDG_DATA_DIRS = builtins.getEnv "XDG_DATA_DIRS";
-  XDG_RUNTIME_DIRS = "/run/user/1001/";
-  # shellHook = ''
-  #   alias yy="yazi"
-  #   alias vs="code"
-  #   echo "Type 'vs' to launch VSCodium"
-  #   echo "Type 'yy' to launch Yazi"
-  # '';
+  # XDG_DATA_DIRS = builtins.getEnv "XDG_DATA_DIRS";
+  # XDG_RUNTIME_DIRS = "/run/user/1001/";
+  shellHook = ''
+    echo "domkrat3d C++ Vulkan Dev Shell"
+    # Ensure proper environment setup for GCC and glibc
+    export CPPFLAGS="-I${pkgs.glfw}/include -I${pkgs.glew}/include -I${pkgs.mesa}/include -I${pkgs.glm}/include -I${pkgs.vulkan-headers}"
+    export LDFLAGS="-L${pkgs.glfw}/lib -L${pkgs.mesa}/lib -L${pkgs.glew}/lib"
+    
+    # Correct the CXXFLAGS by removing `.dev` from the GCC path
+    export CXXFLAGS="-I${pkgs.gcc}/include/c++/${pkgs.gcc.version} -I${pkgs.glibc}/include"
+
+	export LIBRARY_PATH=${pkgs.glfw}/lib:${pkgs.vulkan-loader}/lib:$LIBRARY_PATH
+    export CPATH=${pkgs.glfw}/include:${pkgs.vulkan-headers}/include:$CPATH
+    export VK_ICD_FILENAMES=${pkgs.vulkan-loader}/etc/vulkan/icd.d/nvidia_icd.json
+    export VK_LAYER_PATH=${pkgs.vulkan-validation-layers}/etc/vulkan/explicit_layer.d
+  '';
 }
+

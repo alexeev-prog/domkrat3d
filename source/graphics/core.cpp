@@ -8,7 +8,6 @@
 #include <glm/mat4x4.hpp>
 
 #include <iostream>
-#include <string>
 
 #include "domkrat3d/graphics/core.hpp"
 
