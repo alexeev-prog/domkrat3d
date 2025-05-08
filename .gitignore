@@ -48,3 +48,6 @@ env.bat
 env.ps1
 
 test/CMakeFiles
+.direnv/
+flake.lock
+.envrc
