@@ -10,21 +10,23 @@
 #include <iostream>
 #include <string>
 
+#include "domkrat3d/graphics/core.hpp"
+
 auto initializeWindow(int width, int height, const char* title) -> int {
     glfwInit();
     glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
     GLFWwindow* window = glfwCreateWindow(width, height, title, nullptr, nullptr);
 
-    uint32_t extensionCount = 0;
-    vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, nullptr);
+    uint32_t extension_count = 0;
+    vkEnumerateInstanceExtensionProperties(nullptr, &extension_count, nullptr);
 
-    std::cout << extensionCount << " extensions supported\n";
+    std::cout << extension_count << " extensions supported\n";
 
     glm::mat4 matrix;
     glm::vec4 vec;
     auto test = matrix * vec;
 
-    while(!glfwWindowShouldClose(window)) {
+    while(glfwWindowShouldClose(window) == 0) {
         glfwPollEvents();
     }
 

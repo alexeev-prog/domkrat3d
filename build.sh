@@ -16,7 +16,7 @@ function print_header() {
 }
 
 function print_info() {
-    echo -e "{BLUE}[ ] $1${NC}"
+    echo -e "${BLUE}[ ] $1${NC}"
 }
 
 function print_success() {

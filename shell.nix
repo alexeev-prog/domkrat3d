@@ -57,8 +57,8 @@ pkgs.mkShell {
   LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath libs;
   VK_LAYER_PATH = "${pkgs.vulkan-validation-layers}/share/vulkan/explicit_layer.d";
   VULKAN_SDK = "${pkgs.vulkan-validation-layers}/share/vulkan/explicit_layer.d";
-  # XDG_DATA_DIRS = builtins.getEnv "XDG_DATA_DIRS";
-  # XDG_RUNTIME_DIRS = "/run/user/1001/";
+  XDG_DATA_DIRS = builtins.getEnv "XDG_DATA_DIRS";
+  XDG_RUNTIME_DIRS = "/run/user/1001/";
   # shellHook = ''
   #   alias yy="yazi"
   #   alias vs="code"
