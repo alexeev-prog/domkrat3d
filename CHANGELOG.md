@@ -1,3 +1,9 @@
+commit 01b6c0b4e8cb817435a539eb568095fcf108d183
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Fri May 9 23:04:26 2025 +0700
+
+    fix/docs: update md files, fix bugs, add informatics and improve mathematics
+
 commit 146a02762257d41331d55b6c6a31c2d116c72509
 Author: Alexeev Bronislav <alexeev.dev@mail.ru>
 Date:   Thu May 8 23:01:14 2025 +0700

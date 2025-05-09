@@ -27,6 +27,11 @@ auto create_window(int width, int height, const char* title) -> GLFWwindow*;
 void terminate_window(GLFWwindow* window);
 
 /**
+ * @brief Poll events if GLFW Window is not closed.
+ */
+void poll_events_if_window_open(GLFWwindow* window);
+
+/**
  * @brief Initialize a Window
  *
  * @param width window width

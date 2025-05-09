@@ -55,8 +55,7 @@ namespace mathematics::statistics {
 	 *
 	 * @return	   result
 	 */
-	auto probability(size_t favorable_outcomes, size_t total_outcomes)
-		-> double;
+	auto probability(size_t favorable_outcomes, size_t total_outcomes) -> double;
 
 	/**
 	 * @brief	   conditional probability

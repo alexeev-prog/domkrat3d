@@ -36,8 +36,7 @@ namespace mathematics::statistics {
 		return data[size / 2];
 	}
 
-	auto probability(size_t favorable_outcomes, size_t total_outcomes)
-		-> double {
+	auto probability(size_t favorable_outcomes, size_t total_outcomes) -> double {
 		return static_cast<double>(favorable_outcomes) / total_outcomes;
 	}
 

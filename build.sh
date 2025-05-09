@@ -9,6 +9,12 @@ BLUE='\033[1;34m'
 CYAN='\033[0;36m'
 
 # Functions for formatted output with colors
+function print_title() {
+    echo -e "\n${YELLOW}######################################################################${NC}"
+    echo -e "${YELLOW}$1${NC}"
+    echo -e "${YELLOW}######################################################################${NC}\n"
+}
+
 function print_header() {
     echo -e "${CYAN}=======================================================${NC}"
     echo -e "${CYAN}$1${NC}"
@@ -31,7 +37,7 @@ function print_error() {
     echo -e "${RED}[!] $1${NC}"
 }
 
-print_header "DOMKRAT3D Build Script"
+print_title "DOMKRAT3D Build Script"
 
 # Path for build directory
 BUILD_DIR="build"
@@ -77,12 +83,20 @@ function build_project() {
 
     cd "$BUILD_DIR"
 
+    print_info "Build Project"
+
     # Build with or without multi-configuration support
     if [ "$build_type" == "MultiConfig" ]; then
         cmake --build . --config Release || { print_error "Build failed"; exit 1; }
     else
         cmake . -Ddomkrat3d_DEVELOPER_MODE=ON || { print_error "Build failed"; exit 1; }
     fi
+	
+    print_info "Build Examples"
+
+	cd examples/
+    make || { print_error "Build Examples failed"; exit 1; }
+    cd ..
 
     cd ..
     print_success "Build finished successfully!"

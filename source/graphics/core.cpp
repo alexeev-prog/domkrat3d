@@ -29,8 +29,7 @@ namespace {
 		 *
 		 **/
 		uint32_t extension_count = 0;
-		vkEnumerateInstanceExtensionProperties(
-			nullptr, &extension_count, nullptr);
+		vkEnumerateInstanceExtensionProperties(nullptr, &extension_count, nullptr);
 
 		std::cout << extension_count << " extensions supported\n";
 	}
@@ -45,6 +44,12 @@ void terminate_window(GLFWwindow* window) {
 	glfwTerminate();
 }
 
+void poll_events_if_window_open(GLFWwindow* window) {
+	while (glfwWindowShouldClose(window) == 0) {
+		glfwPollEvents();
+	}
+}
+
 void initialize_window(int width, int height, const char* title) {
 	init_glfw();
 
@@ -52,9 +57,7 @@ void initialize_window(int width, int height, const char* title) {
 
 	print_vulkan_extensions_count();
 
-	while (glfwWindowShouldClose(window) == 0) {
-		glfwPollEvents();
-	}
+	poll_events_if_window_open(window);
 
 	terminate_window(window);
 }

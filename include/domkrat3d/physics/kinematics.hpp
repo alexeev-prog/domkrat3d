@@ -77,9 +77,7 @@ namespace physics::kinematics {
 	 *
 	 * @return	   The final velocity.
 	 */
-	auto calculate_final_velocity(double initial_velocity,
-								  double acceleration,
-								  double time) -> double;
+	auto calculate_final_velocity(double initial_velocity, double acceleration, double time) -> double;
 
 	/**
 	 * @brief	   Calculates the final position.
@@ -118,9 +116,8 @@ namespace physics::kinematics {
 	 *
 	 * @return	   The acceleration of rectilinear motion.
 	 */
-	auto calculate_acceleration_of_rectilinear_motion(double start_speed,
-													  double end_speed,
-													  double time) -> double;
+	auto calculate_acceleration_of_rectilinear_motion(double start_speed, double end_speed, double time)
+		-> double;
 
 	/**
 	 * @brief	   Calculates the speed of rectilinear motion.
@@ -134,7 +131,5 @@ namespace physics::kinematics {
 	 *
 	 * @return	   The speed of rectilinear motion.
 	 */
-	auto calculate_speed_of_rectilinear_motion(double end_speed,
-											   double acceleration,
-											   double time) -> double;
+	auto calculate_speed_of_rectilinear_motion(double end_speed, double acceleration, double time) -> double;
 }	 // namespace physics::kinematics

@@ -19,8 +19,7 @@ namespace mathematics {
 
 		long long const magic_num = 4606853616395542500L;
 
-		u.i =
-			static_cast<long long>(magic_num + (exponent * (u.i - magic_num)));
+		u.i = static_cast<long long>(magic_num + (exponent * (u.i - magic_num)));
 
 		return u.d;
 	}
@@ -48,8 +47,7 @@ namespace mathematics {
 		double const e_abs = fabs(exponent);
 		double const ceil_e = ceil(e_abs);
 		double const base_part = old_approximate_power(base, e_abs / ceil_e);
-		double const result =
-			binary_power(base_part, static_cast<unsigned long long>(ceil_e));
+		double const result = binary_power(base_part, static_cast<unsigned long long>(ceil_e));
 
 		if (exponent < 0.0) {
 			return 1.0 / result;
@@ -64,11 +62,10 @@ namespace mathematics {
 			double d;
 			int x[2];
 		} u = {base};
-		
+
 		const int magic_num = 1072632447;
 
-		u.x[1] =
-			static_cast<int>((exponent * (u.x[1] - magic_num)) + magic_num);
+		u.x[1] = static_cast<int>((exponent * (u.x[1] - magic_num)) + magic_num);
 		u.x[0] = 0;
 
 		return u.d;
@@ -82,8 +79,7 @@ namespace mathematics {
 		double const abs_exp = fabs(exponent);
 		uint const e_int_part = static_cast<long long>(abs_exp);
 		double const e_fract_part = abs_exp - e_int_part;
-		double const result = old_approximate_power(base, e_fract_part)
-			* binary_power(base, e_int_part);
+		double const result = old_approximate_power(base, e_fract_part) * binary_power(base, e_int_part);
 
 		if (exponent < 0.0) {
 			return 1.0 / result;

@@ -1,5 +1,4 @@
 #include <string>
-#include <iostream>
 
 #pragma once
 
@@ -21,7 +20,7 @@ namespace computerscience {
 	 *
 	 * @return	   decimal integer
 	 */
-	auto convert_binary_to_decimal(std::string &binary) -> int;
+	auto convert_binary_to_decimal(std::string& binary) -> int;
 
 	/**
 	 * @brief	   convert decimal to hexadecimal
@@ -39,7 +38,7 @@ namespace computerscience {
 	 *
 	 * @return	   decimal integer
 	 */
-	auto convert_hexadecimal_to_decimal(std::string &hexadecimal) -> int;
+	auto convert_hexadecimal_to_decimal(std::string& hexadecimal) -> int;
 
 	/**
 	 * @brief	   convert binary to hexadecimal
@@ -48,7 +47,7 @@ namespace computerscience {
 	 *
 	 * @return	   hexadecimal number string
 	 */
-	auto convert_binary_to_hexadecimal(std::string &binary) -> std::string;
+	auto convert_binary_to_hexadecimal(std::string& binary) -> std::string;
 
 	/**
 	 * @brief	   convert hexadecimal to binary
@@ -57,7 +56,7 @@ namespace computerscience {
 	 *
 	 * @return	   binary number string
 	 */
-	auto convert_hexadecimal_to_binary(std::string &hexadecimal) -> std::string;
+	auto convert_hexadecimal_to_binary(std::string& hexadecimal) -> std::string;
 
 	/**
 	 * @brief	   Scale bytes to its proper format
@@ -67,5 +66,5 @@ namespace computerscience {
 	 *
 	 * @return	   humanized size
 	 */
-	auto humanize_bytes_size(long long bytes, const std::string suffix) -> std::string;
-}  // namespace computerscience
+	auto humanize_bytes_size(long long bytes, std::string suffix) -> std::string;
+}	 // namespace computerscience

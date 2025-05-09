@@ -23,7 +23,7 @@ namespace computerscience {
 		return binary;
 	}
 
-	auto convert_binary_to_decimal(std::string &binary) -> int {
+	auto convert_binary_to_decimal(std::string& binary) -> int {
 		int decimal = 0;
 
 		for (char const bit : binary) {
@@ -45,25 +45,24 @@ namespace computerscience {
 		return hexadecimal.empty() ? "0" : hexadecimal;
 	}
 
-	auto convert_hexadecimal_to_decimal(std::string &hexadecimal) -> int {
+	auto convert_hexadecimal_to_decimal(std::string& hexadecimal) -> int {
 		int decimal = 0;
 
 		for (char const digit : hexadecimal) {
-			decimal =
-				decimal * 16 + ((isdigit(digit) != 0) ? digit - '0' : toupper(digit) - 'A' + 10);
+			decimal = decimal * 16 + ((isdigit(digit) != 0) ? digit - '0' : toupper(digit) - 'A' + 10);
 		}
 
 		return decimal;
 	}
 
-	auto convert_binary_to_hexadecimal(std::string &binary) -> std::string {
+	auto convert_binary_to_hexadecimal(std::string& binary) -> std::string {
 		int const decimal = convert_binary_to_decimal(binary);
 		std::string hexadecimal = convert_decimal_to_hexadecimal(decimal);
 
 		return hexadecimal;
 	}
 
-	auto convert_hexadecimal_to_binary(std::string &hexadecimal) -> std::string {
+	auto convert_hexadecimal_to_binary(std::string& hexadecimal) -> std::string {
 		int const decimal = convert_hexadecimal_to_decimal(hexadecimal);
 		std::string binary = convert_decimal_to_binary(decimal);
 
@@ -72,7 +71,7 @@ namespace computerscience {
 
 	auto humanize_bytes_size(long long bytes, const std::string suffix) -> std::string {
 		double const factor = 1024.0;
-		std::string const units[] = { "", "K", "M", "G", "T", "P" };
+		std::string const units[] = {"", "K", "M", "G", "T", "P"};
 
 		int i = 0;
 
@@ -82,8 +81,7 @@ namespace computerscience {
 		}
 
 		std::stringstream ss;
-		ss << std::fixed << std::setprecision(2) << static_cast<double>(bytes) << units[i]
-		   << suffix;
+		ss << std::fixed << std::setprecision(2) << static_cast<double>(bytes) << units[i] << suffix;
 		return ss.str();
 	}
-}  // namespace computerscience
+}	 // namespace computerscience
