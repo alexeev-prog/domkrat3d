@@ -31,6 +31,8 @@ function print_error() {
     echo -e "${RED}[!] $1${NC}"
 }
 
+print_header "DOMKRAT3D Build Script"
+
 # Path for build directory
 BUILD_DIR="build"
 

@@ -45,10 +45,10 @@ Welcome to DOMKRAT3D - blazing fast, lightweight 3D game engine in Python! You c
 2. Create 3D games with basic physics
 3. And more!
 
-Our engine is easy-to-learn and lite.
+Our engine is easy-to-learn and lightweight. We use Vulkan API - blazing fast, low-level graphic API.
 
-> [!NOTE]
-> Building and installion: See the [BUILDING](BUILDING.md) document.
+ > [!NOTE]
+ > Building and installion: See the [BUILDING](BUILDING.md) document.
 
  > [!NOTE]
  > Contributing: See the [CONTRIBUTING](CONTRIBUTING.md) document.
@@ -62,6 +62,8 @@ Our engine is easy-to-learn and lite.
 
 - [Introduction](#introduction)
 - [Why Choose Domkrat3D?](#why-choose-domkrat3d)
+- [How to use](#how-to-use)
+  - [Examples](#examples)
 - [Architecture Overview](#architecture-overview)
   - [Core Modules](#core-modules)
 - [Dependencies & Libraries](#dependencies--libraries)
@@ -100,6 +102,16 @@ Welcome! ✨
 
 > [!NOTE]  
 > Ensure your Vulkan SDK and GPU drivers are up to date for optimal experience.
+
+---
+
+## How To Use
+Please, build and install lib. [Instruction here](./BUILDING.md).
+
+You also can read [Hacking](./HACKING.md)
+
+### Examples
+Here is some examples of C++ code for work with domkrat3d engine.
 
 ---
 

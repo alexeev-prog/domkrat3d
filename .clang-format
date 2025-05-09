@@ -68,7 +68,7 @@ BraceWrapping:
   AfterEnum: true
   AfterExternBlock: true
   AfterFunction: false
-  AfterNamespace: true
+  AfterNamespace: false
   AfterObjCDeclaration: false
   AfterStruct: true
   AfterUnion: true
@@ -92,7 +92,7 @@ BreakBeforeTernaryOperators: true
 BreakConstructorInitializers: BeforeComma
 BreakInheritanceList: BeforeComma
 BreakStringLiterals: true
-ColumnLimit: 80
+ColumnLimit: 110
 CommentPragmas: '^ IWYU pragma:'
 CompactNamespaces: false
 ConstructorInitializerIndentWidth: 4

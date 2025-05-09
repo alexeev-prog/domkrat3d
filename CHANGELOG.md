@@ -1,3 +1,27 @@
+commit 146a02762257d41331d55b6c6a31c2d116c72509
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Thu May 8 23:01:14 2025 +0700
+
+    update nix-files
+
+commit 47dce887c7424360117429f1d34ec19de00bdb53
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Thu May 8 18:42:12 2025 +0700
+
+    update nix-files
+
+commit ca7b1f3b02917c531cc6ec7197648c1134d8ea08
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Thu May 8 18:41:02 2025 +0700
+
+    update nix-files
+
+commit bbb8ca3bf45e72642ed18562f9a64d23778283bc
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Thu May 8 00:36:08 2025 +0700
+
+    update structure and add basic window creation
+
 commit 6df20346bd50d55a5207c3ffc3ec2b151c1f4e4a
 Author: Alexeev Bronislav <alexeev.dev@mail.ru>
 Date:   Wed May 7 20:22:20 2025 +0700

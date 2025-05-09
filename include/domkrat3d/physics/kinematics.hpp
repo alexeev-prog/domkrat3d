@@ -11,8 +11,7 @@
  *
  * @todo	   Add more kinematics equations
  */
-namespace physics::kinematics
-{
+namespace physics::kinematics {
 
 	/**
 	 * @brief	   Calculates the path.

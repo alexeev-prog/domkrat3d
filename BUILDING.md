@@ -23,6 +23,12 @@ entt                               # Header-only, tiny and easy to use library f
 vulkan-extension-layer             # Layers providing Vulkan features when native support is unavailable
 vulkan-cts                         # Khronos Vulkan Conformance Tests
 sfml                               # Simple and fast multimedia library
+boost                              # Basic C++ Libraries
+clang                              # Clang tools
+clang-tools                        # Clang tools (clangd, etc)
+pkg-config                         # Package config
+gdb                                # GNU Debugger
+valgrind                           # Find memory leaks and other typical C++ errors
 ```
 
 Or, if use NixOS, you would can start nix-shell:
@@ -32,6 +38,8 @@ nix-shell .
 ```
 
 ## Build
+
+ > You can use our [build-script](./build.sh) (if use linux): `./build.sh`
 
 This project doesn't require any special command-line flags to build to keep
 things simple.

@@ -1,7 +1,7 @@
 { pkgs ? import <nixpkgs> {} }:
 let
   libs = with pkgs; [
-  	boost
+    boost
     cmake
     glfw
     clang
@@ -22,6 +22,7 @@ let
     vulkan-loader
     vulkan-headers
     vulkan-validation-layers
+    valgrind
     vulkan-tools-lunarg
     vulkan-extension-layer
   ];
@@ -67,6 +68,9 @@ pkgs.mkShell {
     export CPATH=${pkgs.glfw}/include:${pkgs.vulkan-headers}/include:$CPATH
     export VK_ICD_FILENAMES=${pkgs.vulkan-loader}/etc/vulkan/icd.d/nvidia_icd.json
     export VK_LAYER_PATH=${pkgs.vulkan-validation-layers}/etc/vulkan/explicit_layer.d
+
+    export CC=clang
+    export CXX=clang++
   '';
 }
 

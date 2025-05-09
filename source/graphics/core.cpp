@@ -1,37 +1,60 @@
+#include <cstdint>
+
+#include <vulkan/vulkan_core.h>
 #define GLFW_INCLUDE_VULKAN
 #define GLFW_DLL
 #include <GLFW/glfw3.h>
 
 #define GLM_FORCE_RADIANS
 #define GLM_FORCE_DEPTH_ZERO_TO_ONE
-#include <glm/vec4.hpp>
-#include <glm/mat4x4.hpp>
-
 #include <iostream>
+
+#include <glm/mat4x4.hpp>
+#include <glm/vec4.hpp>
 
 #include "domkrat3d/graphics/core.hpp"
 
-auto initializeWindow(int width, int height, const char* title) -> int {
-    glfwInit();
-    glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-    GLFWwindow* window = glfwCreateWindow(width, height, title, nullptr, nullptr);
+namespace {
+	void init_glfw() {
+		/**
+		 * @brief Initalize a GLFW
+		 **/
+		glfwInit();
+		glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+	}
 
-    uint32_t extension_count = 0;
-    vkEnumerateInstanceExtensionProperties(nullptr, &extension_count, nullptr);
+	void print_vulkan_extensions_count() {
+		/**
+		 * @brief Print supported Vulkan Extensions count
+		 *
+		 **/
+		uint32_t extension_count = 0;
+		vkEnumerateInstanceExtensionProperties(
+			nullptr, &extension_count, nullptr);
 
-    std::cout << extension_count << " extensions supported\n";
+		std::cout << extension_count << " extensions supported\n";
+	}
+}	 // namespace
 
-    glm::mat4 matrix;
-    glm::vec4 vec;
-    auto test = matrix * vec;
+auto create_window(int width, int height, const char* title) -> GLFWwindow* {
+	return glfwCreateWindow(width, height, title, nullptr, nullptr);
+}
 
-    while(glfwWindowShouldClose(window) == 0) {
-        glfwPollEvents();
-    }
+void terminate_window(GLFWwindow* window) {
+	glfwDestroyWindow(window);
+	glfwTerminate();
+}
 
-    glfwDestroyWindow(window);
+void initialize_window(int width, int height, const char* title) {
+	init_glfw();
 
-    glfwTerminate();
+	GLFWwindow* window = create_window(width, height, title);
 
-    return 0;
+	print_vulkan_extensions_count();
+
+	while (glfwWindowShouldClose(window) == 0) {
+		glfwPollEvents();
+	}
+
+	terminate_window(window);
 }

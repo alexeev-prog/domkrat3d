@@ -21,6 +21,9 @@ add_library(
     source/graphics/core.cpp
     source/physics/core.cpp
     source/physics/kinematics.cpp
+    source/mathematics/core.cpp
+    source/mathematics/statistics.cpp
+    source/informatics/core.cpp
 )
 target_link_libraries(
   domkrat3d_domkrat3d glfw vulkan

@@ -4,6 +4,4 @@
  * @authors alexeev-prog
  */
 
-
 #pragma once
-
