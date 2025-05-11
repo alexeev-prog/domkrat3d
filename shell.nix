@@ -13,12 +13,20 @@ let
     stb
     entt
     glm
+    SDL2
     gcc
     pkg-config
+    SDL2_gfx
+    SDL2_sound
+    SDL2_ttf
+    SDL2_mixer
+    SDL2_image
+    portaudio
     gdb
     mesa
     vulkan-volk
     vulkan-tools
+    imgui
     vulkan-loader
     vulkan-headers
     vulkan-validation-layers

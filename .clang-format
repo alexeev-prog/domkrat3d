@@ -63,7 +63,7 @@ BinPackParameters: false
 BitFieldColonSpacing: Both
 BraceWrapping:
   AfterCaseLabel: false
-  AfterClass: true
+  AfterClass: false
   AfterControlStatement: MultiLine
   AfterEnum: true
   AfterExternBlock: true

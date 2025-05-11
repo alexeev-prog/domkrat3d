@@ -19,6 +19,7 @@ add_library(
     domkrat3d_domkrat3d
     source/domkrat3d.cpp
     source/graphics/core.cpp
+    source/graphics/basic.cpp
     source/physics/core.cpp
     source/physics/kinematics.cpp
     source/mathematics/core.cpp

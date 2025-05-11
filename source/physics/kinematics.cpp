@@ -1,5 +1,7 @@
 #include "domkrat3d/physics/kinematics.hpp"
 
+double const HALF_PART = 0.5;
+
 namespace physics::kinematics {
 
 	auto calculate_path(double speed, double time) -> double {
@@ -22,7 +24,7 @@ namespace physics::kinematics {
 								  double initial_velocity,
 								  double acceleration,
 								  double time) -> double {
-		return initial_position + (initial_velocity * time) + (0.5 * acceleration * time * time);
+		return initial_position + (initial_velocity * time) + (HALF_PART * acceleration * time * time);
 	}
 
 	auto calculate_acceleration_of_rectilinear_motion(double start_speed, double end_speed, double time)

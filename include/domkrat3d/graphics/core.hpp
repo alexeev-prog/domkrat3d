@@ -20,6 +20,13 @@
 auto create_window(int width, int height, const char* title) -> GLFWwindow*;
 
 /**
+ * @brief init GLFW
+ *
+ * @param resizable window resizable status
+ **/
+void init_glfw(bool resizable = false);
+
+/**
  * @brief destroy window and terminate GLFW
  *
  * @param window pointer of window to destroy

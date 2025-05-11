@@ -51,8 +51,7 @@
  *
  * Please see the note above for considerations when creating shared libraries.
  */
-class DOMKRAT3D_EXPORT exported_class
-{
+class DOMKRAT3D_EXPORT exported_class {
   public:
 	/**
 	 * @brief Initializes the name field to the name of the project
