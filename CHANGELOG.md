@@ -1,3 +1,9 @@
+commit d3f160651e5493ed4be89efa62f231ea60688e71
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Mon May 12 00:41:17 2025 +0700
+
+    add debug messages
+
 commit ece3b19e5ebe0d521b0cb0e57857d34e2bea9011
 Author: Alexeev Bronislav <alexeev.dev@mail.ru>
 Date:   Sun May 11 23:50:59 2025 +0700

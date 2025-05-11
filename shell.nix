@@ -25,6 +25,7 @@ let
     gdb
     mesa
     vulkan-volk
+    vulkan-tools-lunarg
     vulkan-tools
     imgui
     vulkan-loader
