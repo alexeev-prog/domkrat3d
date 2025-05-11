@@ -58,7 +58,7 @@ void DomkratTriangleApplication::create_instance() {
 	createInfo.enabledLayerCount = 0;
 
 	if (vkCreateInstance(&createInfo, nullptr, &instance) != VK_SUCCESS) {
-		throw std::runtime_error("Failed to create VK Instance!");
+		throw std::runtime_error("Failed to create Vulkan Instance!");
 	}
 }
 
