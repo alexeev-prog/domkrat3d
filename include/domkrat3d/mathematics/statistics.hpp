@@ -41,8 +41,8 @@ namespace mathematics::statistics {
 	/**
 	 * @brief get median of list
 	 * 
-	 * @param data data
-	 * @return double median
+	 * @param data 
+	 * @return double 
 	 **/
 	auto median(std::vector<double> data) -> double;
 

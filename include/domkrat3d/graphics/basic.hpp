@@ -1,5 +1,6 @@
 #pragma once
 
+#include <vector>
 #include <vulkan/vulkan_core.h>
 #define GLFW_INCLUDE_VULKAN
 #define GLFW_DLL
@@ -29,6 +30,11 @@ class DomkratTriangleApplication {
 		// Vulkan Instance
 		VkInstance instance;
 
+		VkDebugUtilsMessengerEXT debugMessenger;
+
+		static VKAPI_ATTR auto VKAPI_CALL debug_callback(VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity, VkDebugUtilsMessageTypeFlagsEXT messageType,
+										const VkDebugUtilsMessengerCallbackDataEXT* pCallbackData, void* pUserData) -> VkBool32;
+
 		/**
 		 * @brief Init GLFW and create window
 		 **/
@@ -51,8 +57,20 @@ class DomkratTriangleApplication {
 		
 		/**
 		 * @brief Create a vulkan instance object
+		 * An instance is the link between your program and the Vulkan library, and to create it, you will
+		 * need to provide the driver with some information about your program.
 		 **/
 		void create_instance();
+
+		auto check_validation_layer_support() -> bool;
+
+		auto enable_validation_layers() -> bool;
+
+		void populate_debug_messenger_create_info(VkDebugUtilsMessengerCreateInfoEXT& createInfo);
+
+		void setup_debug_messenger();
+
+		auto get_required_extensions() -> std::vector<const char*>;
 };
 
 /**

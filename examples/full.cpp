@@ -16,7 +16,7 @@ auto main() -> int {
 
 	int status = open_application(&app);
 
-	initialize_window(800, 600, "hello");
+	// initialize_window(800, 600, "hello");
 
 	double speed = 10.0;
 	double time = 5.0;
