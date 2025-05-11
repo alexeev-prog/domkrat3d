@@ -7,45 +7,48 @@
 #define GLM_FORCE_RADIANS
 #define GLM_FORCE_DEPTH_ZERO_TO_ONE
 
+#include <cstdlib>
+#include <cstring>
 #include <exception>
 #include <iostream>
+#include <vector>
 
 #include <GLFW/glfw3.h>
 #include <vulkan/vulkan.h>
 
-#include <vector>
-#include <cstring>
-#include <cstdlib>
-
 #include "domkrat3d/graphics/basic.hpp"
 #include "domkrat3d/graphics/core.hpp"
 
-const std::vector<const char*> validationLayers = {
-    "VK_LAYER_KHRONOS_validation"
-};
+const std::vector<const char*> validationLayers = {"VK_LAYER_KHRONOS_validation"};
 
 #ifdef NDEBUG
-    const bool enableValidationLayers = false;
+const bool enableValidationLayers = false;
 #else
-    const bool enableValidationLayers = true;
+const bool enableValidationLayers = true;
 #endif
 
-static auto create_debug_utils_messanger_ext(VkInstance instance, const VkDebugUtilsMessengerCreateInfoEXT* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkDebugUtilsMessengerEXT* pDebugMessenger) -> VkResult {
-    auto func = reinterpret_cast<PFN_vkCreateDebugUtilsMessengerEXT>(vkGetInstanceProcAddr(instance, "vkCreateDebugUtilsMessengerEXT"));
-    if (func != nullptr) {
-        return func(instance, pCreateInfo, pAllocator, pDebugMessenger);
-    } else {
-        return VK_ERROR_EXTENSION_NOT_PRESENT;
-    }
+static auto create_debug_utils_messanger_ext(VkInstance instance,
+											 const VkDebugUtilsMessengerCreateInfoEXT* pCreateInfo,
+											 const VkAllocationCallbacks* pAllocator,
+											 VkDebugUtilsMessengerEXT* pDebugMessenger) -> VkResult {
+	auto func = reinterpret_cast<PFN_vkCreateDebugUtilsMessengerEXT>(
+		vkGetInstanceProcAddr(instance, "vkCreateDebugUtilsMessengerEXT"));
+	if (func != nullptr) {
+		return func(instance, pCreateInfo, pAllocator, pDebugMessenger);
+	} else {
+		return VK_ERROR_EXTENSION_NOT_PRESENT;
+	}
 }
 
-static void destroy_debug_utils_messenger_ext(VkInstance instance, VkDebugUtilsMessengerEXT debugMessenger, const VkAllocationCallbacks* pAllocator) {
-    auto func = (PFN_vkDestroyDebugUtilsMessengerEXT) vkGetInstanceProcAddr(instance, "vkDestroyDebugUtilsMessengerEXT");
-    if (func != nullptr) {
-        func(instance, debugMessenger, pAllocator);
-    }
+static void destroy_debug_utils_messenger_ext(VkInstance instance,
+											  VkDebugUtilsMessengerEXT debugMessenger,
+											  const VkAllocationCallbacks* pAllocator) {
+	auto func = reinterpret_cast<PFN_vkDestroyDebugUtilsMessengerEXT>(
+		vkGetInstanceProcAddr(instance, "vkDestroyDebugUtilsMessengerEXT"));
+	if (func != nullptr) {
+		func(instance, debugMessenger, pAllocator);
+	}
 }
-
 
 void DomkratTriangleApplication::run() {
 	init_window();
@@ -65,11 +68,11 @@ void DomkratTriangleApplication::init_vulkan() {
 }
 
 void DomkratTriangleApplication::create_instance() {
-    if (enableValidationLayers && !check_validation_layer_support()) {
+	if (enableValidationLayers && !check_validation_layer_support()) {
 		throw std::runtime_error("validation layers requested, but not available!");
 	}
 
-	VkApplicationInfo appInfo{};
+	VkApplicationInfo appInfo {};
 	appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
 	appInfo.pApplicationName = "Hello Triangle";
 	appInfo.applicationVersion = VK_MAKE_VERSION(1, 0, 0);
@@ -77,7 +80,7 @@ void DomkratTriangleApplication::create_instance() {
 	appInfo.engineVersion = VK_MAKE_VERSION(1, 0, 0);
 	appInfo.apiVersion = VK_API_VERSION_1_0;
 
-	VkInstanceCreateInfo createInfo{};
+	VkInstanceCreateInfo createInfo {};
 	createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
 	createInfo.pApplicationInfo = &appInfo;
 
@@ -85,40 +88,54 @@ void DomkratTriangleApplication::create_instance() {
 	createInfo.enabledExtensionCount = static_cast<uint32_t>(extensions.size());
 	createInfo.ppEnabledExtensionNames = extensions.data();
 
-	VkDebugUtilsMessengerCreateInfoEXT debugCreateInfo{};
+	VkDebugUtilsMessengerCreateInfoEXT debugCreateInfo {};
 	if (enableValidationLayers) {
 		createInfo.enabledLayerCount = static_cast<uint32_t>(validationLayers.size());
 		createInfo.ppEnabledLayerNames = validationLayers.data();
 
 		populate_debug_messenger_create_info(debugCreateInfo);
-		createInfo.pNext =  (&debugCreateInfo);
+		createInfo.pNext = (&debugCreateInfo);
 	} else {
 		createInfo.enabledLayerCount = 0;
 
 		createInfo.pNext = nullptr;
 	}
 
-	if (vkCreateInstance(&createInfo, nullptr, &instance) != VK_SUCCESS) {
-		throw std::runtime_error("failed to create instance!");
+	int status_code = vkCreateInstance(&createInfo, nullptr, &instance);
+
+	std::cout << "vkCreateInstance: " << status_code << "\n";
+
+	if (status_code != VK_SUCCESS) {
+		// throw std::runtime_error("failed to create instance!");
+		std::cout << "Failed to create instance\n";
 	}
 }
 
-VKAPI_ATTR auto VKAPI_CALL DomkratTriangleApplication::debug_callback(VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity, VkDebugUtilsMessageTypeFlagsEXT messageType, const VkDebugUtilsMessengerCallbackDataEXT* pCallbackData, void* pUserData) -> VkBool32 {
+VKAPI_ATTR auto VKAPI_CALL
+DomkratTriangleApplication::debug_callback(VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity,
+										   VkDebugUtilsMessageTypeFlagsEXT messageType,
+										   const VkDebugUtilsMessengerCallbackDataEXT* pCallbackData,
+										   void* pUserData) -> VkBool32 {
 	std::cerr << "validation layer: " << pCallbackData->pMessage << std::endl;
 
-    return VK_FALSE;
+	return VK_FALSE;
 }
 
-void DomkratTriangleApplication::populate_debug_messenger_create_info(VkDebugUtilsMessengerCreateInfoEXT& createInfo) {
+void DomkratTriangleApplication::populate_debug_messenger_create_info(
+	VkDebugUtilsMessengerCreateInfoEXT& createInfo) {
 	createInfo = {};
 	createInfo.sType = VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT;
-	createInfo.messageSeverity = VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT;
-	createInfo.messageType = VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT;
+	createInfo.messageSeverity = VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT
+		| VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT;
+	createInfo.messageType = VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT
+		| VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT;
 	createInfo.pfnUserCallback = debug_callback;
 }
 
 void DomkratTriangleApplication::setup_debug_messenger() {
-	if (!enableValidationLayers) return;
+	if (!enableValidationLayers) {
+		return;
+	}
 
 	VkDebugUtilsMessengerCreateInfoEXT createInfo;
 	populate_debug_messenger_create_info(createInfo);

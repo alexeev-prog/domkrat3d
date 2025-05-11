@@ -30,8 +30,18 @@ class DomkratTriangleApplication {
 		// Vulkan Instance
 		VkInstance instance;
 
+		// debug messenger
 		VkDebugUtilsMessengerEXT debugMessenger;
 
+		/**
+		 * @brief Debug callback
+		 * 
+		 * @param messageSeverity severity of message
+		 * @param messageType message type
+		 * @param pCallbackData callback data
+		 * @param pUserData user data
+		 * @return VkBool32 callback return data
+		 **/
 		static VKAPI_ATTR auto VKAPI_CALL debug_callback(VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity, VkDebugUtilsMessageTypeFlagsEXT messageType,
 										const VkDebugUtilsMessengerCallbackDataEXT* pCallbackData, void* pUserData) -> VkBool32;
 
@@ -62,14 +72,40 @@ class DomkratTriangleApplication {
 		 **/
 		void create_instance();
 
+		/**
+		 * @brief Check validation layers support status
+		 * 
+		 * @return true validation layers supported
+		 * @return false validation layers not supported
+		 **/
 		auto check_validation_layer_support() -> bool;
-
+		
+		/**
+		 * @brief Enable Validation layers
+		 * 
+		 * @return true validation layers is enabled
+		 * @return false validation layers is disabled
+		 **/
 		auto enable_validation_layers() -> bool;
-
+		
+		/**
+		 * @brief Populate debug messenger
+		 * 
+		 * @param createInfo createInfo vulkan object
+		 **/
 		void populate_debug_messenger_create_info(VkDebugUtilsMessengerCreateInfoEXT& createInfo);
 
+		/**
+		 * @brief Set the up debug messenger object
+		 * 
+		 **/
 		void setup_debug_messenger();
 
+		/**
+		 * @brief Get the required extensions object
+		 * 
+		 * @return std::vector<const char*> 
+		 **/
 		auto get_required_extensions() -> std::vector<const char*>;
 };
 
