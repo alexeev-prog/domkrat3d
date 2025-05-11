@@ -1,4 +1,5 @@
 #include <stdexcept>
+
 #include <sys/types.h>
 #include <vulkan/vulkan_core.h>
 #define GLFW_INCLUDE_VULKAN
@@ -6,11 +7,11 @@
 #define GLM_FORCE_RADIANS
 #define GLM_FORCE_DEPTH_ZERO_TO_ONE
 
-#include <vulkan/vulkan.h>
-#include <GLFW/glfw3.h>
-
 #include <exception>
 #include <iostream>
+
+#include <GLFW/glfw3.h>
+#include <vulkan/vulkan.h>
 // #include <stdexcept>
 #include <cstdlib>
 
@@ -18,66 +19,66 @@
 #include "domkrat3d/graphics/core.hpp"
 
 void DomkratTriangleApplication::run() {
-    init_window();
-    init_vulkan();
-    main_loop();
-    cleanup();
+	init_window();
+	init_vulkan();
+	main_loop();
+	cleanup();
 }
 
 void DomkratTriangleApplication::init_window() {
-    init_glfw();
+	init_glfw();
 
-    window = create_window(width, height, DomkratTriangleApplication::title);
+	window = create_window(width, height, DomkratTriangleApplication::title);
 }
 
 void DomkratTriangleApplication::init_vulkan() {
-    create_instance();
+	create_instance();
 }
 
 void DomkratTriangleApplication::create_instance() {
-    VkApplicationInfo appInfo{};
-    appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
-    appInfo.pApplicationName = DomkratTriangleApplication::title;
-    appInfo.applicationVersion = VK_MAKE_VERSION(0, 1, 0);
-    appInfo.pEngineName = "No Engine";
-    appInfo.engineVersion = VK_MAKE_VERSION(0, 1, 0);
-    appInfo.apiVersion = VK_API_VERSION_1_0;
+	VkApplicationInfo appInfo {};
+	appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
+	appInfo.pApplicationName = DomkratTriangleApplication::title;
+	appInfo.applicationVersion = VK_MAKE_VERSION(0, 1, 0);
+	appInfo.pEngineName = "No Engine";
+	appInfo.engineVersion = VK_MAKE_VERSION(0, 1, 0);
+	appInfo.apiVersion = VK_API_VERSION_1_0;
 
-    VkInstanceCreateInfo createInfo{};
-    createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
-    createInfo.pApplicationInfo = &appInfo;
+	VkInstanceCreateInfo createInfo {};
+	createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
+	createInfo.pApplicationInfo = &appInfo;
 
-    uint32_t glfwExtensionCount = 0;
-    const char** glfwExtensions;
-    glfwExtensions = glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
+	uint32_t glfwExtensionCount = 0;
+	const char** glfwExtensions;
+	glfwExtensions = glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
 
-    createInfo.enabledExtensionCount = glfwExtensionCount;
-    createInfo.ppEnabledExtensionNames = glfwExtensions;
+	createInfo.enabledExtensionCount = glfwExtensionCount;
+	createInfo.ppEnabledExtensionNames = glfwExtensions;
 
-    createInfo.enabledLayerCount = 0;
+	createInfo.enabledLayerCount = 0;
 
-    if (vkCreateInstance(&createInfo, nullptr, &instance) != VK_SUCCESS) {
-        throw std::runtime_error("Failed to create VK Instance!");
-    }
+	if (vkCreateInstance(&createInfo, nullptr, &instance) != VK_SUCCESS) {
+		throw std::runtime_error("Failed to create VK Instance!");
+	}
 }
 
 void DomkratTriangleApplication::main_loop() {
-    poll_events_if_window_open(window);
+	poll_events_if_window_open(window);
 }
 
 void DomkratTriangleApplication::cleanup() {
-    vkDestroyInstance(instance, nullptr);
+	vkDestroyInstance(instance, nullptr);
 
-    terminate_window(window);
+	terminate_window(window);
 }
 
 auto open_application(DomkratTriangleApplication* application) -> int {
-    try {
-        application->run();
-    } catch (const std::exception& e) {
-        std::cerr << e.what() << '\n';
-        return EXIT_FAILURE;
-    }
+	try {
+		application->run();
+	} catch (const std::exception& e) {
+		std::cerr << e.what() << '\n';
+		return EXIT_FAILURE;
+	}
 
-    return EXIT_SUCCESS;
+	return EXIT_SUCCESS;
 }
