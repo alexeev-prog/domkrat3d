@@ -39,6 +39,14 @@ namespace mathematics::statistics {
 	auto combinations(size_t n, size_t k) -> size_t;
 
 	/**
+	 * @brief get median of list
+	 * 
+	 * @param data data
+	 * @return double median
+	 **/
+	auto median(std::vector<double> data) -> double;
+
+	/**
 	 * @brief	   variance
 	 *
 	 * @param[in]  data	 The data
