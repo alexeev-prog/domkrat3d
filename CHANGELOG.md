@@ -1,3 +1,9 @@
+commit d2ae0ae61c13708f4ef7403ec1206854c38b620e
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Mon May 12 19:47:54 2025 +0700
+
+    add LOG_TRACE to library methods
+
 commit fbc1c87e4cb8b3c5e1e8151bfb3cd3a6c35ce2d4
 Author: Alexeev Bronislav <alexeev.dev@mail.ru>
 Date:   Mon May 12 19:28:57 2025 +0700
