@@ -1,3 +1,9 @@
+commit a00df35dc5650a08cf83e71d9aa48d45637aadc2
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Mon May 12 01:10:28 2025 +0700
+
+    fix shell.nix
+
 commit d3f160651e5493ed4be89efa62f231ea60688e71
 Author: Alexeev Bronislav <alexeev.dev@mail.ru>
 Date:   Mon May 12 00:41:17 2025 +0700

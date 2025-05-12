@@ -116,10 +116,11 @@ function run_tests() {
     echo -e "${CYAN}[+] Running tests...${NC}\n"
     # Assuming tests are run via ctest in the test directory
     (cd "$test_dir" && cmake --build . && ./domkrat3d_test)
+    # echo -e "\n"
     if [ $? -eq 0 ]; then
-        print_success "\nAll tests passed successfully!"
+        print_success "All tests passed successfully!"
     else
-        print_error "\nSome tests failed!"
+        print_error "Some tests failed!"
     fi
 }
 

@@ -3,20 +3,12 @@
 #include <iostream>
 #include <string>
 
-#include "domkrat3d/graphics/basic.hpp"
 #include "domkrat3d/graphics/core.hpp"
 #include "domkrat3d/informatics/core.hpp"
 #include "domkrat3d/mathematics/core.hpp"
 #include "domkrat3d/physics/kinematics.hpp"
 
 auto main() -> int {
-	DomkratTriangleApplication app {};
-
-	app.title = "hello world";
-
-	int status = open_application(&app);
-
-	// initialize_window(800, 600, "hello");
 
 	double speed = 10.0;
 	double time = 5.0;
@@ -76,5 +68,5 @@ auto main() -> int {
 	std::cout << "Convert hexadecimal " << hexadecimal_number << " to binary: " << binary_number2 << '\n';
 	std::cout << "Convert " << bytes << ": " << computerscience::humanize_bytes_size(bytes, "B") << '\n';
 
-	return status;
+	return 0;
 }

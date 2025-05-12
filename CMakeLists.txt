@@ -13,13 +13,14 @@ project(
 include(cmake/project-is-top-level.cmake)
 include(cmake/variables.cmake)
 
+find_package(OpenGL REQUIRED)
+
 # ---- Declare library ----
 
 add_library(
     domkrat3d_domkrat3d
     source/domkrat3d.cpp
     source/graphics/core.cpp
-    source/graphics/basic.cpp
     source/physics/core.cpp
     source/physics/kinematics.cpp
     source/mathematics/core.cpp
@@ -27,7 +28,7 @@ add_library(
     source/informatics/core.cpp
 )
 target_link_libraries(
-  domkrat3d_domkrat3d glfw vulkan
+  domkrat3d_domkrat3d glfw ${OPENGL_LIBRARY} ${CMAKE_DL_LIBS}
 )
 add_library(domkrat3d::domkrat3d ALIAS domkrat3d_domkrat3d)
 

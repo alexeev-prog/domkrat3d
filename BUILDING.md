@@ -3,33 +3,31 @@
 ## Dependencies
 Install this dependencies to build domkrat3d:
 
-```bash
-glfw                               # GLFW for window/context management
-libGL                              # OpenGL library (core OpenGL)
-mesa                               # Mesa (provides OpenGL implementation)
-freeglut                           # FreeGLUT (alternative to GLUT)
-gcc                                # GCC compiler (includes standard library support)
-glew                               # GLEW (OpenGL Extension Wrangler Library)
-glm                                # GLM (OpenGL Mathematics)
-cmake                              # Cmake
-vulkan-tools                       # Khronos official Vulkan Tools and Utilities
-vulkan-utility-libraries           # Set of utility libraries for Vulkan
-vulkan-headers                     # Vulkan Header files and API registry
-vulkan-validation-layers           # Official Khronos Vulkan validation layers
-vulkan-memory-allocator            # Easy to integrate Vulkan memory allocation library
-vulkan-loader                      # LunarG Vulkan loader
-stb                                # Single-file public domain libraries for C/C++
-entt                               # Header-only, tiny and easy to use library for game programming and much more written in modern C++
-vulkan-extension-layer             # Layers providing Vulkan features when native support is unavailable
-vulkan-cts                         # Khronos Vulkan Conformance Tests
-sfml                               # Simple and fast multimedia library
-boost                              # Basic C++ Libraries
-clang                              # Clang tools
-clang-tools                        # Clang tools (clangd, etc)
-pkg-config                         # Package config
-gdb                                # GNU Debugger
-valgrind                           # Find memory leaks and other typical C++ errors
-```
+| Library                  | Purpose                                   | Explanation                                                                                |
+|-------------------------|-------------------------------------------|------------------------------------------------------------------------------------------|
+| **glfw**                | Window and Context Management             | Creates OS windows and handles input devices, essential for OpenGL context creation.     |
+| **libGL**               | OpenGL Core Library                       | Provides OpenGL functionality, especially useful when a fallback is needed.              |
+| **libGLU**              | OpenGL Utility Library                    | Provides additional functionalities for OpenGL, such as simplifying matrix and primitive operations. |
+| **mesa**                | OpenGL Implementation                     | Useful for development and testing on OpenGL, especially on systems without hardware acceleration. |
+| **glew**                | OpenGL Extension Wrangler                 | Helps manage OpenGL extensions, particularly important for compatibility.                 |
+| **glm**                 | Math Library                             | Offers specialized vector and matrix operations optimized for graphics.                  |
+| **stb**                 | Utility C Libraries for Images and Fonts | Popular single-header libraries for loading and working with images.                      |
+| **entt**                | Entity-Component-System Library          | A lightweight and efficient ECS implementation for managing game entities.               |
+| **cmake**               | Build System                             | The most widely used tool for cross-platform project build configuration.                |
+| **gcc**                 | C++ Compiler                             | Required to build the engine and projects, providing numerous options and standard support. |
+| **clang**               | Compiler and Code Analysis Tools          | A highly efficient compiler with powerful code analysis and diagnostics capabilities.      |
+| **clang-tidy-sarif**   | Static Code Analysis Tool                 | Performs static code analysis to find potential errors before running the program.       |
+| **clang-tools**         | Tools for Working with Clang              | A suite of tools aimed at improving code quality and automating development processes.   |
+| **imgui**               | Immediate Mode GUI Library               | A simple yet powerful library for creating graphical user interfaces in applications.    |
+| **freeglut**           | Alternative for Window and Input Handling  | A lightweight alternative for managing windows and input, often used in demo projects. |
+| **portaudio**          | Audio Library                            | Provides user-friendly interfaces for working with audio devices.                         |
+| **valgrind**           | Performance Analysis Tool                | Used for detecting memory leaks and profiling performance.                                |
+| **gdb**                 | Debugger                                  | A tool for debugging programs, allowing the analysis of execution and error finding.     |
+| **apitrace**           | API Tracing Tool                         | Enables tracking API calls in OpenGL, useful for debugging and performance analysis.     |
+| **glava**              | OpenGL Performance Testing                | A utility designed for testing OpenGL performance and frame analysis.                    |
+| **glui**               | GUI Library for OpenGL                   | Provides a set of tools for creating graphical user interfaces based on OpenGL.          |
+| **glmark2**            | Performance Benchmark                     | Evaluates the performance of a system based on OpenGL, well-suited for graphics testing. |
+| **glpng**              | PNG Library                               | Allows loading and processing PNG formatted images in graphics applications.               |
 
 Or, if use NixOS, you would can start nix-shell:
 

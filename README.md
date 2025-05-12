@@ -3,7 +3,7 @@
 
 <div align="center">  
   <p align="center">
-    DOMKRAT3D is a lightweight 3D engine in C++ & Vulkan
+    DOMKRAT3D is a lightweight 3D engine in C++ & OpenGL
     <br />
     <a href="https://alexeev-prog.github.io/domkrat3d/"><strong>Explore the docs »</strong></a>
     <br />
@@ -34,7 +34,7 @@
     <img src="https://raw.githubusercontent.com/alexeev-prog/domkrat3d/refs/heads/main/docs/pallet-0.png">
 </p>
 
- > DOMKRAT3D is a lightweight 3D engine in C++ & Vulkan
+ > DOMKRAT3D is a lightweight 3D engine in C++ & OpenGL
  
  > [!CAUTION]
 > At the moment, domkrat3d is under active development, many things may not work, and this version is not recommended for use (all at your own risk)
@@ -45,7 +45,7 @@ Welcome to DOMKRAT3D - blazing fast, lightweight 3D game engine in Python! You c
 2. Create 3D games with basic physics
 3. And more!
 
-Our engine is easy-to-learn and lightweight. We use Vulkan API - blazing fast, low-level graphic API.
+Our engine is easy-to-learn and lightweight. We use OpenGL - simple and popular graphic API.
 
  > [!NOTE]
  > Building and installion: See the [BUILDING](BUILDING.md) document.
@@ -53,8 +53,8 @@ Our engine is easy-to-learn and lightweight. We use Vulkan API - blazing fast, l
  > [!NOTE]
  > Contributing: See the [CONTRIBUTING](CONTRIBUTING.md) document.
 
-> [!NOTE]
-> Licensing: [GNU GPL V3](./LICENSE)
+ > [!NOTE]
+ > Licensing: [GNU GPL V3](./LICENSE)
 
 ---
 
@@ -84,7 +84,7 @@ Our engine is easy-to-learn and lightweight. We use Vulkan API - blazing fast, l
 ## Introduction
 
 Welcome! ✨  
-**Domkrat3D** is not just another 3D engine. It is the culmination of years spent developing a lightweight, fast, and highly modular framework built on Vulkan and modern C++17 standards. Designed for creators who value control, flexibility, and performance, Domkrat3D empowers you to build anything from rapid prototypes to fully-featured 3D games and simulations.
+**Domkrat3D** is not just another 3D engine. It is the culmination of years spent developing a lightweight, fast, and highly modular framework built on OpenGL and modern C++17 standards. Designed for creators who value control, flexibility, and performance, Domkrat3D empowers you to build anything from rapid prototypes to fully-featured 3D games and simulations.
 
 > 💬 **"I’ve always wanted an engine that launches instantly, gives ultimate control, and uses modern technologies."** — [Developer testimonial]
 
@@ -96,12 +96,12 @@ Welcome! ✨
 |-------------------------|------------------------------------------------------------------------|
 | ⚡️ Fast & Lightweight     | Minimizes load times and maximizes runtime efficiency.                 |
 | 🧩 Modular Architecture  | Enables easy extension, customization, and integration of new features.|
-| 🎮 Vulkan API Integration | Leverages cutting-edge graphics API for maximum rendering performance. |
+| 🎮 OpenGL API Integration | Leverages cutting-edge graphics API for maximum rendering performance. |
 | 📚 Modern C++17 Codebase | Clean, maintainable, and future-proof code for professional workflows. |
 | 🌍 Cross-Platform        | Runs seamlessly on Windows, Linux, and macOS.                          |
 
 > [!NOTE]  
-> Ensure your Vulkan SDK and GPU drivers are up to date for optimal experience.
+> Ensure your OpenGL and GPU drivers are up to date for optimal experience.
 
 ---
 
@@ -134,33 +134,70 @@ Domkrat3D’s architecture is thoughtfully segmented into specialized modules, m
 | *dmms*         | DOMKRAT Media Management System | Manage the media: video, some objects and other files |
 | *dscenes*      | DOMKRAT Scenes | Manage the scenes for your game |
 
+### File Structure
+
+```
+source
+├── domkrat3d.cpp
+├── graphics
+│   └── core.cpp
+├── informatics
+│   └── core.cpp
+├── logging.cpp
+├── mathematics
+│   ├── core.cpp
+│   └── statistics.cpp
+└── physics
+    ├── core.cpp
+    └── kinematics.cpp
+
+include/
+└── domkrat3d
+    ├── domkrat3d.hpp
+    ├── export.h
+    ├── graphics
+    │   └── core.hpp
+    ├── informatics
+    │   └── core.hpp
+    ├── mathematics
+    │   ├── core.hpp
+    │   └── statistics.hpp
+    └── physics
+        ├── core.hpp
+        └── kinematics.hpp
+```
+
 ---
 
 ## Dependencies & Libraries 📦
 
 Domkrat3D relies on a well-curated set of external libraries and tools to support its core functionality:
 
-| Library                  | Purpose                                   | Explanation                                                                                 |
-|--------------------------|-------------------------------------------|---------------------------------------------------------------------------------------------|
-| **glfw**                 | Window and Context Management             | Creates OS windows and handles input devices, essential for Vulkan/OpenGL context creation. |
-| **libGL**                | OpenGL Core Library                       | Provides OpenGL functionality if fallback is needed.                                       |
-| **mesa**                 | OpenGL Implementation                     | Useful for development/testing on OpenGL.                                                  |
-| **freeglut**             | Alternative for window and input handling| Lightweight alternative to GLFW or GLUT for simpler demos.                                |
-| **gcc**                  | C++ Compiler                             | Needed to build engine and projects.                                                      |
-| **glew**                 | OpenGL Extension Wrangler                 | Helps manage OpenGL extensions, mainly fallback use.                                     |
-| **glm**                  | Math Library                             | Provides vector and matrix math tailored for graphics.                                   |
-| **cmake**                | Build System                             | Widely used, cross-platform build configuration tool.                                    |
-| **vulkan-tools**         | Vulkan SDK Tools                        | Debugging utilities like validation layer, Vulkan debugger, etc.                         |
-| **vulkan-utility-libraries** | Vulkan helper libraries              | Manage buffers, images, memory — abstract complex Vulkan details.                         |
-| **vulkan-headers**       | Vulkan API Header Files                  | Up-to-date API declarations needed for Vulkan calls.                                    |
-| **vulkan-validation-layers** | Vulkan API Validator                 | Detects misuse or errors in Vulkan commands during development.                          |
-| **vulkan-memory-allocator** | Simplified Vulkan memory allocation   | Streamlines GPU memory management and efficient usage.                                  |
-| **vulkan-loader**        | Vulkan Loader                          | Dynamically loads Vulkan functions and manages API versions at runtime.                 |
-| **stb**                  | Utility C libraries for images, fonts   | Widely used single-header libraries for image loading and more.                         |
-| **entt**                 | Entity-Component-System library          | Lightweight and efficient ECS implementation for managing game entities.                |
-| **vulkan-extension-layer** | Additional Vulkan capabilities          | Provides features when native Vulkan support is unavailable or limited.                 |
-| **vulkan-cts**           | Vulkan Conformance Tests                  | Suite to verify adherence to the Vulkan specification on various platforms.             |
-| **sfml**                 | Multimedia library (optional)              | Used for rapid prototyping, audio, and UI controls if needed.                           |
+| Library                  | Purpose                                   | Explanation                                                                                |
+|-------------------------|-------------------------------------------|------------------------------------------------------------------------------------------|
+| **glfw**                | Window and Context Management             | Creates OS windows and handles input devices, essential for OpenGL context creation.     |
+| **libGL**               | OpenGL Core Library                       | Provides OpenGL functionality, especially useful when a fallback is needed.              |
+| **libGLU**              | OpenGL Utility Library                    | Provides additional functionalities for OpenGL, such as simplifying matrix and primitive operations. |
+| **mesa**                | OpenGL Implementation                     | Useful for development and testing on OpenGL, especially on systems without hardware acceleration. |
+| **glew**                | OpenGL Extension Wrangler                 | Helps manage OpenGL extensions, particularly important for compatibility.                 |
+| **glm**                 | Math Library                             | Offers specialized vector and matrix operations optimized for graphics.                  |
+| **stb**                 | Utility C Libraries for Images and Fonts | Popular single-header libraries for loading and working with images.                      |
+| **entt**                | Entity-Component-System Library          | A lightweight and efficient ECS implementation for managing game entities.               |
+| **cmake**               | Build System                             | The most widely used tool for cross-platform project build configuration.                |
+| **gcc**                 | C++ Compiler                             | Required to build the engine and projects, providing numerous options and standard support. |
+| **clang**               | Compiler and Code Analysis Tools          | A highly efficient compiler with powerful code analysis and diagnostics capabilities.      |
+| **clang-tidy-sarif**   | Static Code Analysis Tool                 | Performs static code analysis to find potential errors before running the program.       |
+| **clang-tools**         | Tools for Working with Clang              | A suite of tools aimed at improving code quality and automating development processes.   |
+| **imgui**               | Immediate Mode GUI Library               | A simple yet powerful library for creating graphical user interfaces in applications.    |
+| **freeglut**           | Alternative for Window and Input Handling  | A lightweight alternative for managing windows and input, often used in demo projects. |
+| **portaudio**          | Audio Library                            | Provides user-friendly interfaces for working with audio devices.                         |
+| **valgrind**           | Performance Analysis Tool                | Used for detecting memory leaks and profiling performance.                                |
+| **gdb**                 | Debugger                                  | A tool for debugging programs, allowing the analysis of execution and error finding.     |
+| **apitrace**           | API Tracing Tool                         | Enables tracking API calls in OpenGL, useful for debugging and performance analysis.     |
+| **glava**              | OpenGL Performance Testing                | A utility designed for testing OpenGL performance and frame analysis.                    |
+| **glui**               | GUI Library for OpenGL                   | Provides a set of tools for creating graphical user interfaces based on OpenGL.          |
+| **glmark2**            | Performance Benchmark                     | Evaluates the performance of a system based on OpenGL, well-suited for graphics testing. |
+| **glpng**              | PNG Library                               | Allows loading and processing PNG formatted images in graphics applications.               |
 
 ---
 
@@ -209,14 +246,14 @@ The sound system is organized into dedicated subsections for clear separation of
 ### Core & Basic Modules 🔑
 
 - Manages scene graph, resource lifecycles, and timing.
-- Abstracts low-level Vulkan and system calls for smooth integration.
+- Abstracts OpenGL and system calls for smooth integration.
 - Implements task scheduling and multi-threaded resource loading.
 
 ---
 
 ## Why Use **Domkrat3D**? ✨
 
-- **Performance driven:** Vulkan-based backend harnesses full GPU power.
+- **Performance driven:** OpenGL-based backend harnesses full GPU power.
 - **Extensible by design:** Modular, loosely coupled systems; add or replace features gracefully.  
 - **Modern standards:** C++17 compliance ensures clean, maintainable, future-proof code.  
 - **Cross-platform:** Write once, run on Windows, Linux, and macOS seamlessly.  
@@ -238,7 +275,7 @@ Get building — prototyping or full game development — and enjoy a direct, no
 If you’re in need of:
 
 - A lightning-fast and lightweight engine  
-- Full Vulkan support  
+- Full OpenGL support  
 - Modular and adaptable framework  
 - Easy-to-understand architecture to fully control your project  
 
