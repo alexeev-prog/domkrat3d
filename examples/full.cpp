@@ -11,7 +11,7 @@
 
 auto main() -> int {
 	LOG_TRACE
-	
+
 	create_simple_window();
 
 	double speed = 10.0;
@@ -22,7 +22,7 @@ auto main() -> int {
 	time = physics::kinematics::calculate_time(path, speed);
 
 	// std::cout << "Data: speed=" << speed << "m/s" << "; time=" << time << "s"
-	// 		  << "; path=" << path << "m" << '\n';
+	//		  << "; path=" << path << "m" << '\n';
 
 	double const final_velocity = physics::kinematics::calculate_final_velocity(10.0, 10.0, 10.0);
 	// std::cout << "final velocity (10.0, 10.0, 10.0) = " << final_velocity << '\n';
@@ -46,9 +46,9 @@ auto main() -> int {
 	// std::cout << "4 fastPowerFractional	   : base 10 exponent 2: " << pow_results[4] << '\n';
 
 	// for (int i = 0; i < sizeof(pow_results) / sizeof(pow_results[0]); i++) {
-	// 	double const error = best_pow_val - pow_results[i];
+	//	double const error = best_pow_val - pow_results[i];
 
-	// 	std::cout << "POW Algorithm #" << i << ": error=" << error << '\n';
+	//	std::cout << "POW Algorithm #" << i << ": error=" << error << '\n';
 	// }
 
 	// std::cout << '\n';
@@ -69,10 +69,11 @@ auto main() -> int {
 	// std::cout << "Convert decimal " << decimal_number << " to binary: " << binary_number << '\n';
 	// std::cout << "Convert binary " << binary_number << " to decimal: " << decimal_number2 << '\n';
 	// std::cout << "Convert decimal " << decimal_number << " to hexadecimal: " << hexadecimal_number << '\n';
-	// std::cout << "Convert hexadecimal " << hexadecimal_number << " to decimal: " << decimal_number3 << '\n';
-	// std::cout << "Convert binary " << binary_number << " to hexadecimal: " << hexadecimal_number2 << '\n';
-	// std::cout << "Convert hexadecimal " << hexadecimal_number << " to binary: " << binary_number2 << '\n';
-	// std::cout << "Convert " << bytes << ": " << computerscience::humanize_bytes_size(bytes, "B") << '\n';
+	// std::cout << "Convert hexadecimal " << hexadecimal_number << " to decimal: " << decimal_number3 <<
+	// '\n'; std::cout << "Convert binary " << binary_number << " to hexadecimal: " << hexadecimal_number2 <<
+	// '\n'; std::cout << "Convert hexadecimal " << hexadecimal_number << " to binary: " << binary_number2 <<
+	// '\n'; std::cout << "Convert " << bytes << ": " << computerscience::humanize_bytes_size(bytes, "B") <<
+	// '\n';
 
 	return 0;
 }

@@ -16,7 +16,7 @@
 namespace graphics_core {
 	void initializing_glfw(bool resizable) {
 		LOG_TRACE
-		
+
 		std::cout << "Starting initializing OpenGL " << OPENGL_MAJOR_VERSION << "." << OPENGL_MINOR_VERSION
 				  << "\n";
 		glfwInit();
@@ -87,7 +87,7 @@ namespace graphics_core {
 
 void create_simple_window() {
 	LOG_TRACE
-	
+
 	const int WIDTH = 800;
 	const int HEIGHT = 600;
 

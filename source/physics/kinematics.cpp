@@ -1,4 +1,5 @@
 #include "domkrat3d/physics/kinematics.hpp"
+
 #include "domkrat3d/tracelogger.hpp"
 
 double const HALF_PART = 0.5;

@@ -2,6 +2,10 @@
 
 #define DEBUG
 
-#define START_INDENT_SYMBOL 	"├──"
-#define INDENT_SYMBOL 			"───"
-#define INDENT_LENGTH 			9
+#define START_INDENT_SYMBOL "├──"
+#define INDENT_SYMBOL "───"
+
+enum
+{
+	INDENT_LENGTH = 9
+};

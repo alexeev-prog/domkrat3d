@@ -7,6 +7,7 @@
 #include <cstdlib>
 
 #include "domkrat3d/mathematics/core.hpp"
+
 #include "domkrat3d/tracelogger.hpp"
 
 namespace mathematics {
@@ -65,7 +66,7 @@ namespace mathematics {
 
 	auto another_approximate_power(double base, double exponent) -> double {
 		LOG_TRACE
-		
+
 		union
 		{
 			double d;
@@ -143,7 +144,7 @@ namespace mathematics {
 
 	auto intabs(int base) -> int {
 		LOG_TRACE
-		
+
 		int const minus_flag = base >> 0x1F;
 
 		int result = minus_flag ^ base;

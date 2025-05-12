@@ -6,6 +6,7 @@
 #include <string>
 
 #include "domkrat3d/informatics/core.hpp"
+
 #include "domkrat3d/tracelogger.hpp"
 
 namespace computerscience {
