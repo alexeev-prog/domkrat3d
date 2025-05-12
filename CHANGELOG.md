@@ -1,3 +1,9 @@
+commit d70228f88c4f5add35224427e1b6f327c7265a1d
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Mon May 12 17:38:39 2025 +0700
+
+    move from vulkan to opengl (driver problems)
+
 commit a00df35dc5650a08cf83e71d9aa48d45637aadc2
 Author: Alexeev Bronislav <alexeev.dev@mail.ru>
 Date:   Mon May 12 01:10:28 2025 +0700

@@ -14,11 +14,13 @@ include(cmake/project-is-top-level.cmake)
 include(cmake/variables.cmake)
 
 find_package(OpenGL REQUIRED)
+find_package(GLEW REQUIRED)
 
 # ---- Declare library ----
 
 add_library(
     domkrat3d_domkrat3d
+    source/tracelogger.cpp
     source/domkrat3d.cpp
     source/graphics/core.cpp
     source/physics/core.cpp
@@ -28,7 +30,7 @@ add_library(
     source/informatics/core.cpp
 )
 target_link_libraries(
-  domkrat3d_domkrat3d glfw ${OPENGL_LIBRARY} ${CMAKE_DL_LIBS}
+  domkrat3d_domkrat3d glfw GLEW::GLEW ${OPENGL_LIBRARY} ${CMAKE_DL_LIBS}
 )
 add_library(domkrat3d::domkrat3d ALIAS domkrat3d_domkrat3d)
 

@@ -9,6 +9,7 @@
 #include "domkrat3d/physics/kinematics.hpp"
 
 auto main() -> int {
+	create_simple_window();
 
 	double speed = 10.0;
 	double time = 5.0;
