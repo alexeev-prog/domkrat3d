@@ -6,9 +6,12 @@
 #include <string>
 
 #include "domkrat3d/informatics/core.hpp"
+#include "domkrat3d/tracelogger.hpp"
 
 namespace computerscience {
 	auto convert_decimal_to_binary(int decimal) -> std::string {
+		LOG_TRACE
+
 		std::string binary;
 
 		if (decimal == 0) {
@@ -24,6 +27,8 @@ namespace computerscience {
 	}
 
 	auto convert_binary_to_decimal(std::string& binary) -> int {
+		LOG_TRACE
+
 		int decimal = 0;
 
 		for (char const bit : binary) {
@@ -34,6 +39,8 @@ namespace computerscience {
 	}
 
 	auto convert_decimal_to_hexadecimal(int decimal) -> std::string {
+		LOG_TRACE
+
 		std::string hexadecimal;
 		const char hex_digits[] = "0123456789ABCDEF";
 
@@ -46,6 +53,8 @@ namespace computerscience {
 	}
 
 	auto convert_hexadecimal_to_decimal(std::string& hexadecimal) -> int {
+		LOG_TRACE
+
 		int decimal = 0;
 
 		for (char const digit : hexadecimal) {
@@ -56,6 +65,8 @@ namespace computerscience {
 	}
 
 	auto convert_binary_to_hexadecimal(std::string& binary) -> std::string {
+		LOG_TRACE
+
 		int const decimal = convert_binary_to_decimal(binary);
 		std::string hexadecimal = convert_decimal_to_hexadecimal(decimal);
 
@@ -63,6 +74,8 @@ namespace computerscience {
 	}
 
 	auto convert_hexadecimal_to_binary(std::string& hexadecimal) -> std::string {
+		LOG_TRACE
+
 		int const decimal = convert_hexadecimal_to_decimal(hexadecimal);
 		std::string binary = convert_decimal_to_binary(decimal);
 
@@ -70,6 +83,8 @@ namespace computerscience {
 	}
 
 	auto humanize_bytes_size(long long bytes, const std::string suffix) -> std::string {
+		LOG_TRACE
+
 		double const factor = 1024.0;
 		std::string const units[] = {"", "K", "M", "G", "T", "P"};
 

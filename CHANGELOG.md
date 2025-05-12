@@ -1,3 +1,9 @@
+commit fbc1c87e4cb8b3c5e1e8151bfb3cd3a6c35ce2d4
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Mon May 12 19:28:57 2025 +0700
+
+    fix/feat: add tracelogger, improve Graphics Core, fix CMake
+
 commit d70228f88c4f5add35224427e1b6f327c7265a1d
 Author: Alexeev Bronislav <alexeev.dev@mail.ru>
 Date:   Mon May 12 17:38:39 2025 +0700

@@ -7,10 +7,13 @@
 #include <cstdlib>
 
 #include "domkrat3d/mathematics/core.hpp"
+#include "domkrat3d/tracelogger.hpp"
 
 namespace mathematics {
 
 	auto old_approximate_power(double base, double exponent) -> double {
+		LOG_TRACE
+
 		union
 		{
 			double d;
@@ -25,6 +28,8 @@ namespace mathematics {
 	}
 
 	auto binary_power(double base, unsigned long long exponent) -> double {
+		LOG_TRACE
+
 		double v = 1.0;
 
 		while (exponent != 0) {
@@ -40,6 +45,8 @@ namespace mathematics {
 	}
 
 	auto fast_power_dividing(double base, double exponent) -> double {
+		LOG_TRACE
+
 		if (base == 1.0 || exponent == 0.0) {
 			return 1.0;
 		}
@@ -57,6 +64,8 @@ namespace mathematics {
 	}
 
 	auto another_approximate_power(double base, double exponent) -> double {
+		LOG_TRACE
+		
 		union
 		{
 			double d;
@@ -72,6 +81,8 @@ namespace mathematics {
 	}
 
 	auto fast_power_fractional(double base, double exponent) -> double {
+		LOG_TRACE
+
 		if (base == 1.0 || exponent == 0.0) {
 			return 1.0;
 		}
@@ -89,6 +100,8 @@ namespace mathematics {
 	}
 
 	auto add_percent_to_number(double number, double percentage) -> double {
+		LOG_TRACE
+
 		double const oneperc = number / 100;
 		double const result = number + (oneperc * percentage);
 
@@ -96,10 +109,14 @@ namespace mathematics {
 	}
 
 	auto square_it_up(double num) -> double {
+		LOG_TRACE
+
 		return num * num;
 	}
 
 	auto get_square_root(double num) -> double {
+		LOG_TRACE
+
 		if (num <= 0) {
 			return 0;
 		}
@@ -125,6 +142,8 @@ namespace mathematics {
 	}
 
 	auto intabs(int base) -> int {
+		LOG_TRACE
+		
 		int const minus_flag = base >> 0x1F;
 
 		int result = minus_flag ^ base;
