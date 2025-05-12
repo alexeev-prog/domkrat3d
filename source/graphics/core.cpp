@@ -40,7 +40,7 @@ namespace graphics_core {
 		GLFWwindow* window = glfwCreateWindow(width, height, title, nullptr, nullptr);
 
 		if (window == nullptr) {
-			std::cout << "Failed to create GLFW Window\n";
+			std::cerr << "Failed to create GLFW Window\n";
 			glfwTerminate();
 			return nullptr;
 		}

@@ -14,7 +14,7 @@ class TraceLogger {
     public:
         static std::string Indent;
 
-        TraceLogger(const char* FILENAME, const char* FUNCNAME, int linenumber);
+        TraceLogger(const char* filename, const char* funcname, int linenumber);
         ~TraceLogger();
         
     private:
