@@ -39,11 +39,7 @@
  > [!CAUTION]
 > At the moment, domkrat3d is under active development, many things may not work, and this version is not recommended for use (all at your own risk)
 
-Welcome to DOMKRAT3D - blazing fast, lightweight 3D game engine in Python! You can use with for:
-
-1. Create programs for work with 3D
-2. Create 3D games with basic physics
-3. And more!
+Welcome to DOMKRAT3D - blazing fast, lightweight 3D game engine in C++ & OpenGL!
 
 Our engine is easy-to-learn and lightweight. We use OpenGL - simple and popular graphic API.
 
