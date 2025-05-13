@@ -11,13 +11,30 @@
 #endif
 
 class TraceLogger {
-  public:
-	static std::string Indent;
+	/**
+	 * @brief TraceLogger - use LOG_TRACE for tracing function calls
+	 * 
+	 **/
 
-	TraceLogger(const char* filename, const char* funcname, int linenumber);
-	~TraceLogger();
+  	public:
+		static std::string Indent;
 
-  private:
-	const char* m_FILENAME;
-	const char* m_FUNCNAME;
+		/**
+		* @brief Construct a new Trace Logger object
+		* 
+		* @param filename logged filename
+		* @param funcname logged function name
+		* @param linenumber logged line number where function called
+		**/
+		TraceLogger(const char* filename, const char* funcname, int linenumber);
+
+		/**
+		* @brief Destroy the Trace Logger object
+		* 
+		**/
+		~TraceLogger();
+
+ 	private:
+		const char* m_FILENAME;
+		const char* m_FUNCNAME;
 };
