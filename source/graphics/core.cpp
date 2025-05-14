@@ -1,4 +1,9 @@
+#include <chrono>
+#include <cstdlib>
+#include <ctime>
 #include <iostream>
+#include <thread>
+
 #define GLEW_STATIC
 #include <GL/glew.h>
 
@@ -17,7 +22,8 @@ namespace graphics_core {
 	void initializing_glfw(bool resizable) {
 		LOG_TRACE
 
-		std::cout << "Starting initializing OpenGL " << OPENGL_MAJOR_VERSION << "." << OPENGL_MINOR_VERSION << "\n";
+		std::cout << "Starting initializing OpenGL " << OPENGL_MAJOR_VERSION << "." << OPENGL_MINOR_VERSION
+				  << "\n";
 		glfwInit();
 
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, OPENGL_MAJOR_VERSION);
@@ -62,16 +68,29 @@ namespace graphics_core {
 		return 0;
 	}
 
+	auto gemerate_random_float() -> float {
+		LOG_TRACE
+
+		return static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
+	}
+
 	auto mainloop(GLFWwindow* window, int width, int height) -> int {
 		LOG_TRACE
 
 		glfwGetFramebufferSize(window, &width, &height);
 		glViewport(0, 0, width, height);
+
+		std::srand(static_cast<unsigned int>(std::time(0)));
+
+		float red = gemerate_random_float();
+		float blue = gemerate_random_float();
+		float green = gemerate_random_float();
+
 		while (glfwWindowShouldClose(window) == 0) {
 			glfwPollEvents();
 
 			// Render Color
-			glClearColor(0.0F, 0.0F, 0.3F, 1.0F);
+			glClearColor(red, green, blue, 1.0F);
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			// Swap the screen buffers
