@@ -21,7 +21,6 @@
     <img src="https://img.shields.io/github/stars/alexeev-prog/domkrat3d?style=for-the-badge">
     <img src="https://img.shields.io/github/issues/alexeev-prog/domkrat3d?style=for-the-badge">
     <img src="https://img.shields.io/github/last-commit/alexeev-prog/domkrat3d?style=for-the-badge">
-    <img src="https://img.shields.io/pypi/wheel/domkrat3d?style=for-the-badge">
     <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/alexeev-prog/domkrat3d?style=for-the-badge">
 </p>
 
