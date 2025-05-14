@@ -1,3 +1,15 @@
+commit b41b086af4c04da42dd41aead22cab0f59e9e163
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Thu May 15 01:45:53 2025 +0700
+
+    add random bg color for example
+
+commit f71ec0b2e40a370a403e264bbbb7b2a06a19c023
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Thu May 15 01:14:31 2025 +0700
+
+    fix docs
+
 commit b7d0645559f36287a0f022ea9e2714de96580b04
 Author: Alexeev Bronislav <alexeev.dev@mail.ru>
 Date:   Wed May 14 08:02:16 2025 +0700
