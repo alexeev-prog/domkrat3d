@@ -1,3 +1,15 @@
+commit 9e5c9c6be97e46327c4bd2c6a4143093c8005648
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Tue May 13 22:08:21 2025 +0700
+
+    add docstrings and add tracelogger to mathematics/statistics
+
+commit dfce10c089ec352bc27a0a2a9c1df659b4a87465
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Tue May 13 00:54:32 2025 +0700
+
+    fix codestyle and improve code readability
+
 commit e5d6270c6c9b9f1b4a6858f340d656e87d088917
 Author: Alexeev Bronislav <alexeev.dev@mail.ru>
 Date:   Mon May 12 23:48:59 2025 +0700

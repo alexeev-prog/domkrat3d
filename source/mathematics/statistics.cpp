@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "domkrat3d/mathematics/statistics.hpp"
+
 #include "domkrat3d/tracelogger.hpp"
 
 namespace mathematics::statistics {
@@ -52,7 +53,7 @@ namespace mathematics::statistics {
 
 	auto conditional_probability(size_t a_and_b, size_t b) -> double {
 		LOG_TRACE
-		
+
 		return static_cast<double>(a_and_b) / b;
 	}
 }	 // namespace mathematics::statistics
