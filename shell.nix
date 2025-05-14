@@ -22,6 +22,7 @@ let
     glpng
     portaudio
     gdb
+    translate-shell
     mesa
     imgui
     freeglut

@@ -17,8 +17,7 @@ namespace graphics_core {
 	void initializing_glfw(bool resizable) {
 		LOG_TRACE
 
-		std::cout << "Starting initializing OpenGL " << OPENGL_MAJOR_VERSION << "." << OPENGL_MINOR_VERSION
-				  << "\n";
+		std::cout << "Starting initializing OpenGL " << OPENGL_MAJOR_VERSION << "." << OPENGL_MINOR_VERSION << "\n";
 		glfwInit();
 
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, OPENGL_MAJOR_VERSION);
