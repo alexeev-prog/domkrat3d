@@ -28,13 +28,6 @@ namespace graphics_core {
 	auto setup_glew() -> int;
 
 	/**
-	 * @brief Generate random float (for color)
-	 *
-	 * @return float
-	 **/
-	auto gemerate_random_float() -> float;
-
-	/**
 	 * @brief Mainloop of OpenGL
 	 *
 	 * @param window GLFW Window

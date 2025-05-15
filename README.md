@@ -44,12 +44,6 @@ Our engine is easy-to-learn and lightweight. We use OpenGL - simple and popular 
 
 OpenGL is a graphic open source API (applied programming interface), which allows developers to create high-performance graphic and interactive 3D applications. It provides a set of functions for rendering 2D and 3D graphs, as well as input processing and other aspects of graphic programming.
 
-GLAD (GL Loader) is a popular open source library that simplifies the process of loading and using OpenGL functions. It generates the necessary code for loading OpenGL functions during execution, eliminating the need to load functions manually.
-
-GLFW (Graphics Library Framework) is another widely used open source library that provides a simple and cross-platform API to create windows, process user input and control of OpenGL contexts. It serves as a shell for the windows and input specific for the API platform, for example, provided by Windows, MacOS and Linux. In addition to windows and input control, GLFW also supports functions such as setting up several monitors and time management.
-
-The combination of Opengl, Glad and GLFW provides developers with a powerful and flexible set of tools for creating modern graphic applications. OpenGL determines the basic capabilities of rendering, and GLAD simplifies the process of loading and access to the OpenGL functions. GLFW, on the other hand, is engaged in the creation of windows, input management and other tasks specific to the platform. Together they offer a comprehensive solution for graphic programming, allowing developers to focus on creating visually attractive and interactive applications.
-
  > [!NOTE]
  > Building and installion: See the [BUILDING](BUILDING.md) document.
 
@@ -95,13 +89,13 @@ Welcome! ✨
 
 ## Why Choose **Domkrat3D**? 🚀
 
-| 🌟 Feature               | 🔍 Why It Matters                                                       |
-|-------------------------|------------------------------------------------------------------------|
+| 🌟 Feature                | 🔍 Why It Matters                                                      |
+|---------------------------|------------------------------------------------------------------------|
 | ⚡️ Fast & Lightweight     | Minimizes load times and maximizes runtime efficiency.                 |
-| 🧩 Modular Architecture  | Enables easy extension, customization, and integration of new features.|
+| 🧩 Modular Architecture   | Enables easy extension, customization, and integration of new features.|
 | 🎮 OpenGL API Integration | Leverages cutting-edge graphics API for maximum rendering performance. |
-| 📚 Modern C++17 Codebase | Clean, maintainable, and future-proof code for professional workflows. |
-| 🌍 Cross-Platform        | Runs seamlessly on Windows, Linux, and macOS.                          |
+| 📚 Modern C++17 Codebase  | Clean, maintainable, and future-proof code for professional workflows. |
+| 🌍 Cross-Platform         | Runs seamlessly on Windows, Linux, and macOS.                          |
 
 > [!NOTE]  
 > Ensure your OpenGL and GPU drivers are up to date for optimal experience.

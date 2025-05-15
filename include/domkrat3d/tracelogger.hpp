@@ -5,6 +5,10 @@
 #include "domkrat3d/_default.hpp"
 
 #ifdef DEBUG
+/**
+ * @brief 
+ * 
+ **/
 #	 define LOG_TRACE TraceLogger logger(__FILE__, __FUNCTION__, __LINE__);
 #else
 #	 define LOG_TRACE
