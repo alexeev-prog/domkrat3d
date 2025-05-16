@@ -33,8 +33,8 @@
     <img src="https://raw.githubusercontent.com/alexeev-prog/domkrat3d/refs/heads/main/docs/pallet-0.png">
 </p>
 
- > DOMKRAT3D is a lightweight 3D engine in C++ & OpenGL
- 
+![logo](./docs/logo.png)
+
  > [!CAUTION]
 > At the moment, domkrat3d is under active development, many things may not work, and this version is not recommended for use (all at your own risk)
 

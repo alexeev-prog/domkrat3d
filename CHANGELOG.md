@@ -1,3 +1,9 @@
+commit 0d0741a9eb754b9cfbf0cf91b7dfb87c69c12bf8
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Fri May 16 19:34:50 2025 +0700
+
+    fix bugs and improve MD files, and improve debugging
+
 commit 215da696db8b6f03c021dfb8294acc29828ce1c3
 Author: Alexeev Bronislav <alexeev.dev@mail.ru>
 Date:   Thu May 15 20:21:27 2025 +0700
