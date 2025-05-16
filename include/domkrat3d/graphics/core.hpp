@@ -16,9 +16,10 @@ namespace graphics_core {
 	 * @param width window width
 	 * @param height window height
 	 * @param title window title
+	 * @param fullscreen window fullscreen status (default false)
 	 * @return GLFWwindow* GLFW Window Object or nullptr
 	 **/
-	auto create_window(int width, int height, const char* title) -> GLFWwindow*;
+	auto create_window(int width, int height, const char* title, bool fullscreen = false) -> GLFWwindow*;
 
 	/**
 	 * @brief Setup GLEW
@@ -26,6 +27,14 @@ namespace graphics_core {
 	 * @return int status code
 	 **/
 	auto setup_glew() -> int;
+
+	/**
+	 * @brief Terminate window
+	 * 
+	 * @param window window object
+	 * @param terminate terminate glfw status (default false)
+	 **/
+	void terminate_window(GLFWwindow* window, bool terminate = false);
 
 	/**
 	 * @brief Mainloop of OpenGL

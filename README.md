@@ -113,8 +113,20 @@ Here is some examples of C++ code for work with domkrat3d engine.
 ---
 
 ## Architecture Overview 🏗️
-
 Domkrat3D’s architecture is thoughtfully segmented into specialized modules, making it easier to maintain, extend, and customize. Each module focuses on a specific domain of engine functionality.
+
+### Debug levels
+Domkrat3D have seven debug levels:
+
+1. Trace - `::TRACE::`
+2. GL Debug - `::GL DEBUG::`
+3. Debug - `::DEBUG::`
+4. Info - `::INFO::`
+5. Warning - `::WARNING::`
+6. Error - `::ERROR::`
+7. Critical - `::CRITICAL::`
+
+![image](./docs/images/debug_levels.png)
 
 ### Engine Architecture at a Glance
 

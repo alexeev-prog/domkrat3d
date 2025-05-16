@@ -1,3 +1,9 @@
+commit 215da696db8b6f03c021dfb8294acc29828ce1c3
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Thu May 15 20:21:27 2025 +0700
+
+    add utils
+
 commit c5e79a21760fc4943f4b314496a9295dd77227b9
 Author: Alexeev Bronislav <alexeev.dev@mail.ru>
 Date:   Thu May 15 01:46:21 2025 +0700

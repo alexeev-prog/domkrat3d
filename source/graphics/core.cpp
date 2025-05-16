@@ -8,6 +8,8 @@
 #define GLM_FORCE_DEPTH_ZERO_TO_ONE
 #include <GLFW/glfw3.h>
 
+#include "GL/gl.h"
+
 #define OPENGL_MAJOR_VERSION 4
 #define OPENGL_MINOR_VERSION 6
 
@@ -18,15 +20,20 @@
 namespace graphics_core {
 	void initializing_glfw(bool resizable) {
 		LOG_TRACE
-
+		
 		std::cout << "Starting initializing OpenGL " << OPENGL_MAJOR_VERSION << "." << OPENGL_MINOR_VERSION << "\n";
 		glfwInit();
+		glGetError();
 
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, OPENGL_MAJOR_VERSION);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, OPENGL_MINOR_VERSION);
 
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+		
+		#ifdef DEBUG
+		glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE);
+		#endif
 
 		if (resizable) {
 			glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
@@ -35,10 +42,16 @@ namespace graphics_core {
 		}
 	}
 
-	auto create_window(int width, int height, const char* title) -> GLFWwindow* {
+	auto create_window(int width, int height, const char* title, bool fullscreen) -> GLFWwindow* {
 		LOG_TRACE
 
-		GLFWwindow* window = glfwCreateWindow(width, height, title, nullptr, nullptr);
+		GLFWwindow* window = nullptr;
+
+		if (fullscreen) {
+			GLFWwindow* window = glfwCreateWindow(width, height, title, glfwGetPrimaryMonitor(), nullptr);
+		} else {
+			GLFWwindow* window = glfwCreateWindow(width, height, title, nullptr, nullptr);
+		}
 
 		if (window == nullptr) {
 			std::cerr << "Failed to create GLFW Window\n";
@@ -61,7 +74,22 @@ namespace graphics_core {
 			return -1;
 		}
 
+		#ifdef DEBUG
+		glEnable(GL_DEBUG_OUTPUT);
+		glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS); 
+		glDebugMessageCallback(callback, nullptr);
+		glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, nullptr, GL_TRUE);
+		#endif
+
 		return 0;
+	}
+
+	void terminate_window(GLFWwindow* window, bool terminate) {
+		glfwDestroyWindow(window);
+
+		if (terminate) {
+			glfwTerminate();
+		}
 	}
 
 	auto mainloop(GLFWwindow* window, int width, int height) -> int {

@@ -2,13 +2,12 @@
 
 #include <string>
 
+#define GLEW_STATIC
+#include <GL/gl.h>
+
 #include "domkrat3d/_default.hpp"
 
 #ifdef DEBUG
-/**
- * @brief 
- * 
- **/
 #	 define LOG_TRACE TraceLogger logger(__FILE__, __FUNCTION__, __LINE__);
 #else
 #	 define LOG_TRACE
@@ -42,3 +41,16 @@ class TraceLogger {
 	const char* m_FILENAME;
 	const char* m_FUNCNAME;
 };
+
+/**
+ * @brief GL Debug Callback function
+ * 
+ * @param source source of message
+ * @param type message type
+ * @param id message id
+ * @param severity message severity
+ * @param length message length
+ * @param message message text
+ * @param userParam user param
+ **/
+void APIENTRY callback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam);

@@ -28,6 +28,7 @@ add_library(
     source/mathematics/core.cpp
     source/mathematics/statistics.cpp
     source/informatics/core.cpp
+    source/utils/random.cpp
 )
 target_link_libraries(
   domkrat3d_domkrat3d glfw GLEW::GLEW ${OPENGL_LIBRARY} ${CMAKE_DL_LIBS}
