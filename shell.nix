@@ -73,7 +73,7 @@ pkgs.mkShell {
   # XDG_DATA_DIRS = builtins.getEnv "XDG_DATA_DIRS";
   # XDG_RUNTIME_DIRS = "/run/user/1001/";
   shellHook = ''
-    echo "domkrat3d C++ OpenGL Dev Shell"
+    echo "domkrat3d C++ Vulkan/OpenGL Dev Shell"
     # Ensure proper environment setup for GCC and glibc
     export CPPFLAGS="-I${pkgs.glfw}/include -I${pkgs.glew}/include -I${pkgs.mesa}/include -I${pkgs.glm}/include"
     export LDFLAGS="-L${pkgs.glfw}/lib -L${pkgs.mesa}/lib -L${pkgs.glew}/lib"
