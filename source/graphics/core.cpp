@@ -94,20 +94,20 @@ namespace graphics_core {
 
 	auto mainloop(GLFWwindow* window, int width, int height) -> int {
 		LOG_TRACE
-
+		
 		glfwGetFramebufferSize(window, &width, &height);
 		glViewport(0, 0, width, height);
 
+		// generate random color
     	float red = generate_random_float();
 		float blue = generate_random_float();
 		float green = generate_random_float();
-		float alpha = generate_random_float();
 
 		while (glfwWindowShouldClose(window) == 0) {
 			glfwPollEvents();
 
 			// Render Color
-			glClearColor(red, green, blue, alpha);
+			glClearColor(red, green, blue, 1.0F);
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			// Swap the screen buffers

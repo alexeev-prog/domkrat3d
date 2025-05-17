@@ -38,6 +38,12 @@
               pkgs.clang-tidy-sarif
               pkgs.clang-analyzer
               pkgs.libclang
+              pkgs.SDL2
+              pkgs.SDL2_image
+              pkgs.SDL2_ttf
+              pkgs.SDL2_mixer
+              pkgs.SDL2_sound
+              pkgs.SDL2_gfx
             ];
             VK_LAYER_PATH = "${pkgs.vulkan-validation-layers}/share/vulkan/explicit_layer.d";
             VULKAN_SDK = "${pkgs.vulkan-validation-layers}/share/vulkan/explicit_layer.d";

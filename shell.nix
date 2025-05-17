@@ -28,6 +28,20 @@ let
     freeglut
     libGLU
     valgrind
+    SDL2
+    SDL2_image
+    SDL2_ttf
+    SDL2_mixer
+    SDL2_sound
+    SDL2_gfx
+
+    vulkan-volk
+    vulkan-tools
+    vulkan-loader
+    vulkan-headers
+    vulkan-validation-layers
+    vulkan-tools-lunarg
+    vulkan-extension-layer
   ];
   lib = libs;
 in
