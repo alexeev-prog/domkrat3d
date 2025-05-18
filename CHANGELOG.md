@@ -1,3 +1,15 @@
+commit a0bc8fce5da03efe67cd9ed76430b15cc02fc02b
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Sun May 18 22:12:30 2025 +0700
+
+    fix code style
+
+commit 1422c9f9114ca300147718a7655f9cfd51f37e30
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Sun May 18 22:07:52 2025 +0700
+
+    repo config
+
 commit 44680d2e282a8b9c43781f176cc80032157a6612
 Author: Alexeev Bronislav <alexeev.dev@mail.ru>
 Date:   Sun May 18 22:07:24 2025 +0700

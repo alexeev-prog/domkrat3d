@@ -51,6 +51,10 @@ Welcome to Domkrat3D, a cutting-edge 3D game engine built on the robust C++ prog
 
 Our engine is easy-to-learn and lightweight. We use Vulkan - fast and popular graphic API.
 
+## Versioning
+
+![versioning](./docs/versioning.png)
+
 ## Why Choose Domkrat3D? 🛠️
 
 - Performance-Focused: Built with performance as a top priority, Domkrat3D is optimized for speed and efficiency. With Vulkan as its backbone, expect lightning-fast render times and responsive gameplay.
