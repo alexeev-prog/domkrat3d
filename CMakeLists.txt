@@ -23,6 +23,7 @@ add_library(
     source/tracelogger.cpp
     source/domkrat3d.cpp
     source/graphics/core.cpp
+    source/graphics/simple.cpp
     source/physics/core.cpp
     source/physics/kinematics.cpp
     source/mathematics/core.cpp
@@ -31,7 +32,7 @@ add_library(
     source/utils/random.cpp
 )
 target_link_libraries(
-  domkrat3d_domkrat3d glfw GLEW::GLEW ${OPENGL_LIBRARY} ${CMAKE_DL_LIBS}
+  domkrat3d_domkrat3d vulkan glfw GLEW::GLEW ${OPENGL_LIBRARY} ${CMAKE_DL_LIBS}
 )
 add_library(domkrat3d::domkrat3d ALIAS domkrat3d_domkrat3d)
 

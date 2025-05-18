@@ -13,9 +13,11 @@ let
     stb
     entt
     glm
+    lsb-release
     glava
     glui
     glmark2
+    mesa-demos
     gcc
     pkg-config
     apitrace

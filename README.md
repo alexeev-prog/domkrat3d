@@ -36,11 +36,7 @@
 ![logo](./docs/logo.png)
 
  > [!CAUTION]
-> At the moment, domkrat3d is under active development, many things may not work, and this version is not recommended for use (all at your own risk)
-
-Welcome to DOMKRAT3D - blazing fast, lightweight 3D game engine in C++ & Vulkan!
-
-Our engine is easy-to-learn and lightweight. We use Vulkan - simple and popular graphic API.
+ > At the moment, domkrat3d is under active development, many things may not work, and this version is not recommended for use (all at your own risk)
 
  > [!NOTE]
  > Building and installion: See the [BUILDING](BUILDING.md) document.
@@ -50,6 +46,36 @@ Our engine is easy-to-learn and lightweight. We use Vulkan - simple and popular 
 
  > [!NOTE]
  > Licensing: [GNU GPL V3](./LICENSE)
+
+Welcome to Domkrat3D, a cutting-edge 3D game engine built on the robust C++ programming language and leveraging the Vulkan graphics API. If you're a game developer looking for flexibility, performance, and absolute control over your rendering pipeline, you’ve just found your new best friend. Let’s dive deeper! 💡
+
+Our engine is easy-to-learn and lightweight. We use Vulkan - fast and popular graphic API.
+
+## Why Choose Domkrat3D? 🛠️
+
+- Performance-Focused: Built with performance as a top priority, Domkrat3D is optimized for speed and efficiency. With Vulkan as its backbone, expect lightning-fast render times and responsive gameplay.
+
+- Modular Design: Our engine’s architecture allows for flexibility and scalability. Whether you’re creating a small indie game or a large-scale AAA title, Domkrat3D adapts to your needs, enabling you to plug in or update components as required.
+
+- Intuitive API: We’ve designed a developer-friendly API that balances power and usability. With comprehensive documentation and examples, developers at any level can dive in and start building quickly.
+
+- Community-Driven: Domkrat3D isn’t just an engine; it's a thriving community of passionate developers. Engage with others, share knowledge, and collaborate on bringing your game ideas to life. Join us and shape the future of gaming technology together! 🤝
+
+- Cross-Disciplinary Support: Whether you're a programmer, artist, or designer, the ease of use and the integration capabilities of Domkrat3D make it easy for all team members to contribute effectively to the project.
+
+## Why Vulkan? 🌌
+
+### Unmatched Performance
+Vulkan is the latest graphics API developed by the Khronos Group, providing low-level control over the GPU. This means you can squeeze out every last drop of performance from your hardware, unlocking visceral graphics and seamless gameplay experiences. With Vulkan, you get:
+
+- Asynchronous Compute: Use your GPU's resources more efficiently by overlapping rendering and compute tasks.
+- Explicit Control: Fine-tune your memory management and synchronization—Vulkan allows you to dictate how and when things render and resources are used, putting you in the driver’s seat.
+
+### Cross-Platform Compatibility 🌍
+Whether you're developing for Windows, Linux, or other platforms, Vulkan’s cross-platform support makes it an ideal choice for Domkrat3D. Reach a broader audience and ensure your game runs smoothly across various devices with minimal effort.
+
+### Advanced Rendering Techniques
+Vulkan supports advanced techniques such as tessellation, volumetric lighting, and more, allowing you to create visual masterpieces without the abstraction layers obstructing your vision. Elevate your game aesthetics to professional levels! 🎨
 
 ---
 
@@ -81,7 +107,7 @@ Our engine is easy-to-learn and lightweight. We use Vulkan - simple and popular 
 Welcome! ✨  
 **Domkrat3D** is not just another 3D engine. It is the culmination of years spent developing a lightweight, fast, and highly modular framework built on Vulkan and modern C++17 standards. Designed for creators who value control, flexibility, and performance, Domkrat3D empowers you to build anything from rapid prototypes to fully-featured 3D games and simulations.
 
-> 💬 **"I’ve always wanted an engine that launches instantly, gives ultimate control, and uses modern technologies."** — [Developer testimonial]
+> 💬 **"I’ve always wanted an engine that launches instantly, gives ultimate control, and uses modern technologies."** — [Alexeev Bronislaw]
 
 ---
 
@@ -123,6 +149,8 @@ Domkrat3D have seven debug levels:
 5. Warning - `::WARNING::`
 6. Error - `::ERROR::`
 7. Critical - `::CRITICAL::`
+
+![debug levels](./docs/debug_levels.png)
 
 ### Engine Architecture at a Glance
 

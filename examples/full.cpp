@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 
-#include "domkrat3d/graphics/core.hpp"
+#include "domkrat3d/graphics/simple.hpp"
 #include "domkrat3d/informatics/core.hpp"
 #include "domkrat3d/mathematics/core.hpp"
 #include "domkrat3d/physics/kinematics.hpp"
@@ -12,7 +12,9 @@
 auto main() -> int {
 	LOG_TRACE
 
-	create_simple_window();
+	SimpleBasicApplication application;
+
+	open_application(&application);
 
 	double speed = 10.0;
 	double time = 5.0;

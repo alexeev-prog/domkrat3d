@@ -28,6 +28,8 @@ Install this dependencies to build domkrat3d:
 | **glui**               | GUI Library for OpenGL                   | Provides a set of tools for creating graphical user interfaces based on OpenGL.          |
 | **glmark2**            | Performance Benchmark                     | Evaluates the performance of a system based on OpenGL, well-suited for graphics testing. |
 | **glpng**              | PNG Library                               | Allows loading and processing PNG formatted images in graphics applications.               |
+| **vulkan**             | Vulkan Library                            | Allows work with Vulkan API                                                                 |
+| **validation layers** | Vulkan Layers Validations                  | Allow validations layers from Vulkan SDK LunarG                                             |
 
 Or, if use NixOS, you would can start nix-shell:
 

@@ -1,3 +1,9 @@
+commit e2640f48b34f6657b08743b99269e52acd31133b
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Sun May 18 03:41:01 2025 +0700
+
+    switch to vulkan
+
 commit 5a4e1cccc840f9eaf6f5a6d75b1fad98c01b424c
 Author: Alexeev Bronislav <alexeev.dev@mail.ru>
 Date:   Sat May 17 21:41:01 2025 +0700
