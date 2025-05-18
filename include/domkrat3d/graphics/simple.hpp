@@ -2,7 +2,6 @@
 
 #include <string>
 #include <vulkan/vulkan_core.h>
-#include "domkrat3d/_default.hpp"
 #define GLFW_INCLUDE_VULKAN
 #define GLFW_DLL
 

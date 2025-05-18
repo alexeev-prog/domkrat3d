@@ -2,11 +2,12 @@
 #include <iostream>
 
 #include "domkrat3d/graphics/core.hpp"
-#include "domkrat3d/tracelogger.hpp"
-#include "domkrat3d/utils/random.hpp"
 
 #include <GLFW/glfw3.h>
 #include <vulkan/vulkan_core.h>
+
+#include "domkrat3d/tracelogger.hpp"
+#include "domkrat3d/utils/random.hpp"
 
 #define GLFW_INCLUDE_VULKAN
 #define GLFW_DLL
@@ -76,14 +77,14 @@ void poll_events_if_window_open(GLFWwindow* window, int width, int height) {
 
 void initialize_window(int width, int height, const char* title) {
 	LOG_TRACE;
-	
+
 	init_glfw();	// init glfw
 
 	GLFWwindow* window = create_window(width, height, title);	 // create window
 
 	print_vulkan_extensions_count();	// print VK extensions count
 
-	poll_events_if_window_open(window, width, height);	   // poll events
+	poll_events_if_window_open(window, width, height);	  // poll events
 
 	terminate_window(window);
 }

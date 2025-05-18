@@ -19,32 +19,32 @@ class TraceLogger {
 	 *
 	 **/
 
-  public:
-	static std::string Indent;
+	public:
+		static std::string Indent;
 
-	/**
-	 * @brief Construct a new Trace Logger object
-	 *
-	 * @param filename logged filename
-	 * @param funcname logged function name
-	 * @param linenumber logged line number where function called
-	 **/
-	TraceLogger(const char* filename, const char* funcname, int linenumber);
+		/**
+		* @brief Construct a new Trace Logger object
+		*
+		* @param filename logged filename
+		* @param funcname logged function name
+		* @param linenumber logged line number where function called
+		**/
+		TraceLogger(const char* filename, const char* funcname, int linenumber);
 
-	/**
-	 * @brief Destroy the Trace Logger object
-	 *
-	 **/
-	~TraceLogger();
+		/**
+		* @brief Destroy the Trace Logger object
+		*
+		**/
+		~TraceLogger();
 
-  private:
-	const char* m_FILENAME;
-	const char* m_FUNCNAME;
+	private:
+		const char* m_FILENAME;
+		const char* m_FUNCNAME;
 };
 
 /**
  * @brief GL Debug Callback function
- * 
+ *
  * @param source source of message
  * @param type message type
  * @param id message id
@@ -53,4 +53,10 @@ class TraceLogger {
  * @param message message text
  * @param userParam user param
  **/
-void APIENTRY callback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam);
+void APIENTRY callback(GLenum source,
+					   GLenum type,
+					   GLuint id,
+					   GLenum severity,
+					   GLsizei length,
+					   const GLchar* message,
+					   const void* userParam);
