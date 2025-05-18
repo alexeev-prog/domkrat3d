@@ -51,3 +51,4 @@ test/CMakeFiles
 .direnv/
 flake.lock
 .envrc
+.report_log.txt

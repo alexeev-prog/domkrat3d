@@ -1,3 +1,15 @@
+commit 44680d2e282a8b9c43781f176cc80032157a6612
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Sun May 18 22:07:24 2025 +0700
+
+    delete file
+
+commit db4337e4cbdaf3a7a76617b41d57fa988920afe3
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Sun May 18 22:07:07 2025 +0700
+
+    add validation layers, improve docs, fix bugs
+
 commit e2640f48b34f6657b08743b99269e52acd31133b
 Author: Alexeev Bronislav <alexeev.dev@mail.ru>
 Date:   Sun May 18 03:41:01 2025 +0700
