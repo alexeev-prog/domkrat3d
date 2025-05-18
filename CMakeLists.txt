@@ -4,7 +4,7 @@ include(cmake/prelude.cmake)
 
 project(
     domkrat3d
-    VERSION 0.1.0
+    VERSION 0.0.1.0
     DESCRIPTION "Lite 3D Game Engine in C++ Vulkan"
     HOMEPAGE_URL "https://github.com/alexeev-prog/domkrat3d"
     LANGUAGES CXX
