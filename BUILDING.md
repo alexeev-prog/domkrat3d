@@ -30,6 +30,7 @@ Install this dependencies to build domkrat3d:
 | **glpng**              | PNG Library                               | Allows loading and processing PNG formatted images in graphics applications.               |
 | **vulkan**             | Vulkan Library                            | Allows work with Vulkan API                                                                 |
 | **validation layers** | Vulkan Layers Validations                  | Allow validations layers from Vulkan SDK LunarG                                             |
+| **SDL2**              | SDL Library with submodules                | Allows use sound, pictures, and other.                                                       |
 
 Or, if use NixOS, you would can start nix-shell:
 

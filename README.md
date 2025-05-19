@@ -93,11 +93,6 @@ Vulkan supports advanced techniques such as tessellation, volumetric lighting, a
   - [Core Modules](#core-modules)
 - [Dependencies & Libraries](#dependencies--libraries)
 - [Engine Architecture](#engine-architecture)
-  - [SoundSys](#soundsys)
-  - [D3DOL](#d3dol)
-  - [Physics Engine](#physics-engine)
-  - [Math Module](#math-module)
-  - [Core & Basic Modules](#core--basic-modules)
 - [Why Use Domkrat3D?](#why-use-domkrat3d)
 - [Get Started](#ready-to-start)
 - [Final Words](#final-words)
@@ -127,6 +122,17 @@ Welcome! ✨
 
 > [!NOTE]  
 > Ensure your Vulkan and GPU drivers are up to date for optimal experience.
+
+Domkrat 3D uses Vulkan version 1.4.
+
+Major changes and additions in Vulkan 1.4:
+
+1. added support for the Streaming Transfers mechanism, designed to enable the streaming of large amounts of data between the main system (host) and the graphics device without interrupting rendering or slowing down its performance. The mechanism is implemented using the new VK_EXT_host_image_copy extension, which is optional.;
+2. performance-enhancing features have been upgraded to mandatory: Push Descriptors (the ability to write descriptor updates directly to the command buffer, instead of creating separate sets of descriptors and linking them to the command buffer), VK_KHR_dynamic_rendering_local_read (allows reading from nested buffers (attachments) and resources recorded by previous fragment shaders as part of dynamic rendering passes), VK_EXT_scalar_block_layout (allows using a C-like structure for SPIR-V blocks, in which non-scalar types can be aligned based on the size of their components);
+3. The VK_KHR_maintenance5 and VK_KHR_maintenance6 extensions are included, providing auxiliary commands and structures to simplify resource and shader management.;
+4. guaranteed support for rendering with a resolution of 8K (7680x4320 pixels) and using up to 8 independent rendering buffers.;
+5. Many features that were previously optional have been made mandatory;
+6. added a large portion of new commands and structures.
 
 ---
 
@@ -158,51 +164,9 @@ Domkrat3D have seven debug levels:
 
 ### Engine Architecture at a Glance
 
-| Module          | Description                                                                                                   | Roles & Key Features                                                                                   |
+| Module          | Description                                                                                                   | Roles & Key Features                                                                                  |
 |-----------------|---------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
-| **SoundSys**    | Comprehensive audio system, split into functional subsections.                                                | - **ambient**: continuous background soundscapes (e.g. wind, city bustle)<br>- **beep**: single event sounds (notifications, clicks)<br>- **music**: looping background or dynamic scene music<br>- **sound**: core engine for 3D sound positioning, effects, and playback control |
-| **D3DOL**       | DOMKRAT 3D Object Loader — manages importing, parsing, and efficiently organizing 3D models and meshes.       | Supports popular formats like glTF and OBJ, automatically loads meshes, materials, and textures.       |
-| **physics**     | Physics simulation module focused on rigid bodies, collisions, and forces.                                    | Handles accurate collision detection, rigid body dynamics, gravity, and physical interactions.         |
-| **math**       | Foundational mathematical primitives and utilities.                                                          | Provides vectors, matrices, quaternions, transforms, and optimized routines essential for graphics and physics. |
-| **basic**      | Essential engine infrastructure — scene graph management, resource loading, and core logic.                    | Manages state updates, resource lifecycle, and ties together different modules through unified interfaces. |
-| **plainimg**   | Simple image loader and handler.                                                                              | Supports texture loading from PNG, JPEG, DDS; used in materials and UI textures.                        |
-| **dml**        | DOMKRAT Map Loader — efficient parsing and management of level data and terrain.                              | Handles map data, spatial partitioning, and streaming for large environments.                           |
-| **desm**       | DOMKRAT Event System Manager — centralized event dispatching and handling.                                    | Facilitates message passing, listener registration, and event-driven architecture patterns.            |
-| *dmms*         | DOMKRAT Media Management System | Manage the media: video, some objects and other files |
-| *dscenes*      | DOMKRAT Scenes | Manage the scenes for your game |
-
-### File Structure
-
-```
-source
-├── domkrat3d.cpp
-├── graphics
-│   └── core.cpp
-├── informatics
-│   └── core.cpp
-├── logging.cpp
-├── mathematics
-│   ├── core.cpp
-│   └── statistics.cpp
-└── physics
-    ├── core.cpp
-    └── kinematics.cpp
-
-include/
-└── domkrat3d
-    ├── domkrat3d.hpp
-    ├── export.h
-    ├── graphics
-    │   └── core.hpp
-    ├── informatics
-    │   └── core.hpp
-    ├── mathematics
-    │   ├── core.hpp
-    │   └── statistics.hpp
-    └── physics
-        ├── core.hpp
-        └── kinematics.hpp
-```
+| **mathematics** | Mathematics module for calculating and solve equations                                                        | Calculate any needed data from algebra and geometry                                                   |
 
 ---
 
@@ -212,11 +176,11 @@ Domkrat3D relies on a well-curated set of external libraries and tools to suppor
 
 | Library                  | Purpose                                   | Explanation                                                                                |
 |-------------------------|-------------------------------------------|------------------------------------------------------------------------------------------|
-| **glfw**                | Window and Context Management             | Creates OS windows and handles input devices, essential for Vulkan context creation.     |
-| **libGL**               | Vulkan Core Library                       | Provides Vulkan functionality, especially useful when a fallback is needed.              |
-| **libGLU**              | Vulkan Utility Library                    | Provides additional functionalities for Vulkan, such as simplifying matrix and primitive operations. |
-| **mesa**                | Vulkan Implementation                     | Useful for development and testing on Vulkan, especially on systems without hardware acceleration. |
-| **glew**                | Vulkan Extension Wrangler                 | Helps manage Vulkan extensions, particularly important for compatibility.                 |
+| **glfw**                | Window and Context Management             | Creates OS windows and handles input devices, essential for OpenGL context creation.     |
+| **libGL**               | OpenGL Core Library                       | Provides OpenGL functionality, especially useful when a fallback is needed.              |
+| **libGLU**              | OpenGL Utility Library                    | Provides additional functionalities for OpenGL, such as simplifying matrix and primitive operations. |
+| **mesa**                | OpenGL Implementation                     | Useful for development and testing on OpenGL, especially on systems without hardware acceleration. |
+| **glew**                | OpenGL Extension Wrangler                 | Helps manage OpenGL extensions, particularly important for compatibility.                 |
 | **glm**                 | Math Library                             | Offers specialized vector and matrix operations optimized for graphics.                  |
 | **stb**                 | Utility C Libraries for Images and Fonts | Popular single-header libraries for loading and working with images.                      |
 | **entt**                | Entity-Component-System Library          | A lightweight and efficient ECS implementation for managing game entities.               |
@@ -230,61 +194,14 @@ Domkrat3D relies on a well-curated set of external libraries and tools to suppor
 | **portaudio**          | Audio Library                            | Provides user-friendly interfaces for working with audio devices.                         |
 | **valgrind**           | Performance Analysis Tool                | Used for detecting memory leaks and profiling performance.                                |
 | **gdb**                 | Debugger                                  | A tool for debugging programs, allowing the analysis of execution and error finding.     |
-| **apitrace**           | API Tracing Tool                         | Enables tracking API calls in Vulkan, useful for debugging and performance analysis.     |
-| **glava**              | Vulkan Performance Testing                | A utility designed for testing Vulkan performance and frame analysis.                    |
-| **glui**               | GUI Library for Vulkan                   | Provides a set of tools for creating graphical user interfaces based on Vulkan.          |
-| **glmark2**            | Performance Benchmark                     | Evaluates the performance of a system based on Vulkan, well-suited for graphics testing. |
+| **apitrace**           | API Tracing Tool                         | Enables tracking API calls in OpenGL, useful for debugging and performance analysis.     |
+| **glava**              | OpenGL Performance Testing                | A utility designed for testing OpenGL performance and frame analysis.                    |
+| **glui**               | GUI Library for OpenGL                   | Provides a set of tools for creating graphical user interfaces based on OpenGL.          |
+| **glmark2**            | Performance Benchmark                     | Evaluates the performance of a system based on OpenGL, well-suited for graphics testing. |
 | **glpng**              | PNG Library                               | Allows loading and processing PNG formatted images in graphics applications.               |
-
----
-
-## Engine Architecture – Detailed Module Descriptions 🛠️
-
-### SoundSys 🎵
-
-The sound system is organized into dedicated subsections for clear separation of responsibilities:
-
-| Section  | Role & Description                                                                         |
-|----------|-------------------------------------------------------------------------------------------|
-| **ambient** | Background environmental sounds that create immersion: rustling leaves, city noise, rain sounds that play continuously. |
-| **beep**    | Short, one-off sounds typically used for UI feedback like ‘clicks’, alerts, and notifications. |
-| **music**   | Handles looping background music tracks or dynamic scene music changes during gameplay.   |
-| **sound**   | Core sound engine responsible for 3D audio positioning, distance attenuation, reverb, and applying audio effects.       |
-
-> [!IMPORTANT]  
-> Dividing sound into these sections allows efficient resource management, mixing, and prioritization, ensuring a smooth and rich audio experience.
-
----
-
-### D3DOL (DOMKRAT 3D Object Loader) 🧸
-
-- Robust 3D object loading supporting industry-standard formats like glTF and OBJ.
-- Supports skinning, meshes, materials, and texture bindings.
-- Implements optimizations such as vertex buffer batching and hierarchical scene representation.
-
----
-
-### Physics Engine ⚖️
-
-- Implements rigid body physics, continuous collision detection, and response.
-- Supports gravity, forces, and constraints.
-- Designed to be extensible for custom physics behavior or integration with external physics engines.
-
----
-
-### Math Module ➗✖️
-
-- Core mathematical types: vector2/3/4, matrices (3×3, 4×4), quaternions.
-- Highly optimized for real-time computation, especially GPU-friendly transformations and calculations.
-- Includes utility routines for interpolation, projection, and spatial queries.
-
----
-
-### Core & Basic Modules 🔑
-
-- Manages scene graph, resource lifecycles, and timing.
-- Abstracts Vulkan and system calls for smooth integration.
-- Implements task scheduling and multi-threaded resource loading.
+| **vulkan**             | Vulkan Library                            | Allows work with Vulkan API                                                                 |
+| **validation layers** | Vulkan Layers Validations                  | Allow validations layers from Vulkan SDK LunarG                                             |
+| **SDL2**              | SDL Library with submodules                | Allows use sound, pictures, and other.                                                       |
 
 ---
 

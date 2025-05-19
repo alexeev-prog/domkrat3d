@@ -1,3 +1,9 @@
+commit 764f3609c81839c2c113cf27115884c9c2c4ce92
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Sun May 18 22:26:52 2025 +0700
+
+    fix bugs with debug
+
 commit 0ca69defe0fabaaa626a0da137129ed9590c2c98
 Author: Alexeev Bronislav <alexeev.dev@mail.ru>
 Date:   Sun May 18 22:22:56 2025 +0700
