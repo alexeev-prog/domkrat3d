@@ -85,8 +85,24 @@ SimpleBasicApplication::debug_callback(VkDebugUtilsMessageSeverityFlagBitsEXT me
 		}
 	}();
 
-	std::cerr << "::VK " << severity_str << "::  " << "[" << type_str << "] "
-			  << "validation layer: " << p_callback_data->pMessage << "\n";
+	auto color = [message_severity]() -> std::string
+	{
+		switch (message_severity) {
+			case VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT:
+				return CYAN_COLOR;
+			case VK_DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT:
+				return GREEN_COLOR;
+			case VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT:
+				return YELLOW_COLOR;
+			case VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT:
+				return RED_COLOR;
+			default:
+				return GREY_COLOR;
+		}
+	}();
+
+	std::cerr << color << "::VK " << severity_str << "::  " << "[" << type_str << "] "
+			  << "validation layer: " << p_callback_data->pMessage << RESET << "\n";
 
 	return VK_FALSE;
 }

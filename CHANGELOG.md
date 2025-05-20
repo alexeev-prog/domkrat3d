@@ -1,3 +1,9 @@
+commit f06d7b7c093b38873a178178c4ec78c0ce037e12
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Wed May 21 00:55:19 2025 +0700
+
+    feat: add equations and fix logging
+
 commit 8ed9093956034ee213d4b84ebeafa2c448767ed5
 Author: Alexeev Bronislav <alexeev.dev@mail.ru>
 Date:   Mon May 19 23:40:41 2025 +0700
