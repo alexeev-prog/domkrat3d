@@ -28,6 +28,7 @@ add_library(
     source/physics/kinematics.cpp
     source/mathematics/core.cpp
     source/mathematics/statistics.cpp
+    source/mathematics/equations.cpp
     source/informatics/core.cpp
     source/utils/random.cpp
 )

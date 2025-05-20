@@ -11,6 +11,7 @@
 
 #include "domkrat3d/_default.hpp"
 #include "domkrat3d/graphics/core.hpp"
+#include "domkrat3d/tracelogger.hpp"
 
 const std::vector<const char*> VALIDATION_LAYERS = {"VK_LAYER_KHRONOS_validation"};
 
@@ -26,6 +27,8 @@ static auto create_debug_utils_messenger_ext(VkInstance instance,
 											 const VkDebugUtilsMessengerCreateInfoEXT* pCreateInfo,
 											 const VkAllocationCallbacks* pAllocator,
 											 VkDebugUtilsMessengerEXT* pDebugMessenger) -> VkResult {
+	LOG_TRACE
+
 	auto func =
 		(PFN_vkCreateDebugUtilsMessengerEXT)vkGetInstanceProcAddr(instance, "vkCreateDebugUtilsMessengerEXT");
 	if (func != nullptr) {
@@ -50,19 +53,21 @@ SimpleBasicApplication::debug_callback(VkDebugUtilsMessageSeverityFlagBitsEXT me
 									   VkDebugUtilsMessageTypeFlagsEXT message_type,
 									   const VkDebugUtilsMessengerCallbackDataEXT* p_callback_data,
 									   void* p_user_data) -> VkBool32 {
+	LOG_TRACE
+	
 	auto severity_str = [message_severity]() -> std::string
 	{
 		switch (message_severity) {
 			case VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT:
 				return "DIAGNOSTIC";
 			case VK_DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT:
-				return "INFO      ";
+				return "INFO";
 			case VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT:
-				return "WARNING   ";
+				return "WARNING";
 			case VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT:
-				return "ERROR     ";
+				return "ERROR";
 			default:
-				return "UNKNOWN   ";
+				return "UNKNOWN";
 		}
 	}();
 
@@ -80,13 +85,15 @@ SimpleBasicApplication::debug_callback(VkDebugUtilsMessageSeverityFlagBitsEXT me
 		}
 	}();
 
-	std::cerr << "::VK " << severity_str << "::  " << DebugIndent << type_str << "; "
+	std::cerr << "::VK " << severity_str << "::  " << "[" << type_str << "] "
 			  << "validation layer: " << p_callback_data->pMessage << "\n";
 
 	return VK_FALSE;
 }
 
 auto SimpleBasicApplication::check_validation_layer_support() -> bool {
+	LOG_TRACE
+	
 	uint32_t layer_count;
 	vkEnumerateInstanceLayerProperties(&layer_count, nullptr);
 
@@ -112,6 +119,8 @@ auto SimpleBasicApplication::check_validation_layer_support() -> bool {
 }
 
 auto SimpleBasicApplication::get_required_extensions() -> std::vector<const char*> {
+	LOG_TRACE
+	
 	uint32_t glfwExtensionCount = 0;
 	const char** glfwExtensions;
 	glfwExtensions = glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
@@ -127,6 +136,8 @@ auto SimpleBasicApplication::get_required_extensions() -> std::vector<const char
 
 void SimpleBasicApplication::populate_debug_messenger_create_info(
 	VkDebugUtilsMessengerCreateInfoEXT& create_info) {
+	LOG_TRACE
+	
 	create_info = {};
 	create_info.sType = VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT;
 	create_info.messageSeverity = VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT
@@ -137,6 +148,8 @@ void SimpleBasicApplication::populate_debug_messenger_create_info(
 }
 
 void SimpleBasicApplication::run() {
+	LOG_TRACE
+	
 	init_window();
 	init_vulkan();
 	main_loop();
@@ -144,16 +157,22 @@ void SimpleBasicApplication::run() {
 }
 
 void SimpleBasicApplication::init_window() {
+	LOG_TRACE
+	
 	init_glfw();
 	window = create_window(WIDTH, HEIGHT, TITLE);
 }
 
 void SimpleBasicApplication::init_vulkan() {
+	LOG_TRACE
+	
 	create_instance();
 	setup_debug_callback();
 }
 
 void SimpleBasicApplication::setup_debug_callback() {
+	LOG_TRACE
+	
 	if (!ENABLE_VALIDATION_LAYERS) {
 		return;
 	}
@@ -167,6 +186,8 @@ void SimpleBasicApplication::setup_debug_callback() {
 }
 
 void SimpleBasicApplication::create_instance() {
+	LOG_TRACE
+	
 	// A Instance is a link between your Vulkan program and the library, and to create it, you will need to
 	// provide the driver with some data about your program.
 	if (ENABLE_VALIDATION_LAYERS && !check_validation_layer_support()) {
@@ -210,15 +231,19 @@ void SimpleBasicApplication::create_instance() {
 	}
 
 	if (vkCreateInstance(&create_info, nullptr, &instance) != VK_SUCCESS) {
-		throw std::runtime_error("failed to create instance!");
+		throw std::runtime_error("Failed to create instance!");
 	}
 }
 
 void SimpleBasicApplication::main_loop() {
+	LOG_TRACE
+	
 	poll_events_if_window_open(window, WIDTH, HEIGHT);
 }
 
 void SimpleBasicApplication::cleanup() {
+	LOG_TRACE
+	
 	if (ENABLE_VALIDATION_LAYERS) {
 		destroy_debug_utils_messenger_ext(instance, debug_messenger, nullptr);
 	}
@@ -229,6 +254,8 @@ void SimpleBasicApplication::cleanup() {
 }
 
 auto open_application(SimpleBasicApplication* application) -> int {
+	LOG_TRACE
+	
 	try {
 		application->run();
 	} catch (const std::exception& e) {
