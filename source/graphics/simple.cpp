@@ -177,7 +177,7 @@ void SimpleBasicApplication::init_window() {
 	
 	init_glfw();
 	window = create_window(WIDTH, HEIGHT, TITLE);
-}
+} 
 
 void SimpleBasicApplication::init_vulkan() {
 	LOG_TRACE

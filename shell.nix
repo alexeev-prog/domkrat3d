@@ -13,6 +13,7 @@ let
     stb
     entt
     glm
+    fltk
     lsb-release
     glava
     glui

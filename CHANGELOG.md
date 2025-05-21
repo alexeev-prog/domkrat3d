@@ -1,3 +1,9 @@
+commit 31e0431d40c781ccb1a8ff6724fd6ada00fd8a8a
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Wed May 21 02:18:57 2025 +0700
+
+    add coloring to trace and vulkan debug logging
+
 commit f06d7b7c093b38873a178178c4ec78c0ce037e12
 Author: Alexeev Bronislav <alexeev.dev@mail.ru>
 Date:   Wed May 21 00:55:19 2025 +0700

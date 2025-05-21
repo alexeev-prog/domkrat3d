@@ -97,6 +97,5 @@ void APIENTRY callback(GLenum source,
 		}
 	}();
 
-	std::cout << "::GL DEBUG::	" << source_str << ", " << type_str << ", " << severity_str << ", " << id
-			  << ": " << message << "\n";
+	std::cout << "::GL DEBUG::	" << source_str << ", " << type_str << ", " << severity_str << ", " << id << ": " << message << "\n";
 }
