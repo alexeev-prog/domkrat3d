@@ -22,7 +22,7 @@ TraceLogger::TraceLogger(const char* filename, const char* funcname, int linenum
 	}
 }
 
-TraceLogger::~TraceLogger() {
+TraceLogger::~TraceLogger() noexcept {
 	Indent.resize(Indent.length() - INDENT_LENGTH);
 	std::cout << GREY_COLOR << "::Trace::  " << Indent << "Leaving " << m_FUNCNAME << "() - (" << m_FILENAME << ")"
 			  << RESET << '\n';
