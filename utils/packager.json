@@ -1,0 +1,6 @@
+{
+    "build_command": ["./build.sh", "all"],
+    "include_files": ["*.cpp", "*.hpp", "README.md", "LICENSE"],
+    "exclude_dirs": ["test", "build"],
+    "output_name": "my_project"
+}
