@@ -120,7 +120,7 @@ Welcome! ✨
 | 📚 Modern C++17 Codebase  | Clean, maintainable, and future-proof code for professional workflows. |
 | 🌍 Cross-Platform         | Runs seamlessly on Windows, Linux, and macOS.                          |
 
-> [!NOTE]  
+> [!NOTE]
 > Ensure your Vulkan and GPU drivers are up to date for optimal experience.
 
 Domkrat 3D uses Vulkan version 1.4.

@@ -52,3 +52,4 @@ test/CMakeFiles
 flake.lock
 .envrc
 .report_log.txt
+docs/VulkanInDomkrat/.obsidian
