@@ -107,7 +107,7 @@ class CppAnalyzer:
 
             # Running clang-tidy for static analysis
             result = subprocess.run(
-                ['clang-tidy', file_path, '--', '-std=c++17'],
+                ['clang-tidy', file_path, '--'],
                 capture_output=True,
                 text=True,
                 check=True

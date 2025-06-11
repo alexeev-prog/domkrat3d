@@ -7,7 +7,7 @@
 
 enum
 {
-    INDENT_LENGTH = 6
+	INDENT_LENGTH = 6
 };
 
 #define RED_COLOR "\033[1;31m"

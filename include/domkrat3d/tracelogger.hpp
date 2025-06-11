@@ -8,38 +8,38 @@
 #include "domkrat3d/_default.hpp"
 
 #ifdef DEBUG
-#    define LOG_TRACE TraceLogger logger(__FILE__, __FUNCTION__, __LINE__);
+#	 define LOG_TRACE TraceLogger logger(__FILE__, __FUNCTION__, __LINE__);
 #else
-#    define LOG_TRACE
+#	 define LOG_TRACE
 #endif
 
 class TraceLogger {
-    /**
-     * @brief TraceLogger - use LOG_TRACE for tracing function calls
-     *
-     **/
+	/**
+	 * @brief TraceLogger - use LOG_TRACE for tracing function calls
+	 *
+	 **/
 
   public:
-    static std::string Indent;
+	static std::string Indent;
 
-    /**
-     * @brief Construct a new Trace Logger object
-     *
-     * @param filename logged filename
-     * @param funcname logged function name
-     * @param linenumber logged line number where function called
-     **/
-    TraceLogger(const char* filename, const char* funcname, int linenumber);
+	/**
+	 * @brief Construct a new Trace Logger object
+	 *
+	 * @param filename logged filename
+	 * @param funcname logged function name
+	 * @param linenumber logged line number where function called
+	 **/
+	TraceLogger(const char* filename, const char* funcname, int linenumber);
 
-    /**
-     * @brief Destroy the Trace Logger object
-     *
-     **/
-    ~TraceLogger();
+	/**
+	 * @brief Destroy the Trace Logger object
+	 *
+	 **/
+	~TraceLogger();
 
   private:
-    const char* m_FILENAME;
-    const char* m_FUNCNAME;
+	const char* m_FILENAME;
+	const char* m_FUNCNAME;
 };
 
 /**
@@ -54,9 +54,9 @@ class TraceLogger {
  * @param userParam user param
  **/
 void APIENTRY callback(GLenum source,
-                       GLenum type,
-                       GLuint id,
-                       GLenum severity,
-                       GLsizei length,
-                       const GLchar* message,
-                       const void* userParam);
+					   GLenum type,
+					   GLuint id,
+					   GLenum severity,
+					   GLsizei length,
+					   const GLchar* message,
+					   const void* userParam);

@@ -7,150 +7,260 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[1;34m'
 CYAN='\033[0;36m'
+MAGENTA='\033[0;35m'
+ORANGE='\033[0;33m'
 
-# Functions for formatted output with colors
-function print_title() {
-    echo -e "\n${YELLOW}######################################################################${NC}"
+# Functions for formatted output
+print_title() {
+    echo -e "${YELLOW}======================================================================${NC}"
     echo -e "${YELLOW}$1${NC}"
-    echo -e "${YELLOW}######################################################################${NC}\n"
+    echo -e "${YELLOW}======================================================================${NC}"
 }
 
-function print_header() {
+print_header() {
     echo -e "${CYAN}=======================================================${NC}"
     echo -e "${CYAN}$1${NC}"
     echo -e "${CYAN}=======================================================${NC}"
 }
 
-function print_info() {
-    echo -e "${BLUE}[ ] $1${NC}"
+print_info() {
+    echo -e "${BLUE}[ℹ] $1${NC}"
 }
 
-function print_success() {
-    echo -e "${GREEN}[+] $1${NC}"
+print_success() {
+    echo -e "${GREEN}[✓] $1${NC}"
 }
 
-function print_warning() {
-    echo -e "${YELLOW}[?] $1${NC}"
+print_warning() {
+    echo -e "${YELLOW}[⚠] $1${NC}"
 }
 
-function print_error() {
-    echo -e "${RED}[!] $1${NC}"
+print_error() {
+    echo -e "${RED}[✗] $1${NC}"
 }
 
-print_title "DOMKRAT3D Build Script"
+print_debug() {
+    echo -e "${MAGENTA}[🐞] $1${NC}"
+}
 
-# Path for build directory
+print_command() {
+    echo -e "${ORANGE}\$ $1${NC}"
+}
+
+# Function to print the intro with ASCII art
+print_intro() {
+    echo -e "${BLUE}"
+    echo -e "${BLUE}███    ███ ██████  ███    ██ ███    ██  ██████  ${NC}   ${GREEN}Morning.lang${NC}"
+    echo -e "${BLUE}████  ████ ██   ██ ████   ██ ████   ██ ██       ${NC}   ${GREEN}Maintained by alexeev-prog${NC}"
+    echo -e "${BLUE}██ ████ ██ ██████  ██ ██  ██ ██ ██  ██ ██   ███ ${NC}   ${CYAN}\033[4mhttps://github.com/alexeev-prog/morning.lang${NC}\033[0m"
+    echo -e "${BLUE}██  ██  ██ ██   ██ ██  ██ ██ ██  ██ ██ ██    ██ ${NC}   ${CYAN}\033[4mhttps://alexeev-prog.github.io/morning.lang${NC}\033[0m"
+    echo -e "${BLUE}██      ██ ██   ██ ██   ████ ██   ████  ██████  ${NC}   ${YELLOW}Copyright 2025 (C) alexeev-prog${NC}"
+    echo -e "${NC}"
+}
+
+print_intro
+print_title "Morning.lang Build System"
+
+# Global configuration
 BUILD_DIR="build"
+DEVELOPER_MODE="OFF"
+CONFIG_MODE="Release"
+GENERATOR_TYPE=""
+
+# Function to clean build directory
+clean_build_dir() {
+    if [ -d "$BUILD_DIR" ]; then
+        print_warning "Cleaning build directory: $BUILD_DIR"
+        rm -rf "$BUILD_DIR"
+    else
+        print_info "Build directory already clean: $BUILD_DIR"
+    fi
+}
 
 # Function to configure the project with CMake
-function configure_build() {
+configure_project() {
     local build_type="$1"
     print_header "Configuring project ($build_type build)"
-
-    # Remove previous build directory if exists
-    if [ -d "$BUILD_DIR" ]; then
-        print_warning "Removing existing build folder: $BUILD_DIR"
-        rm -rf "$BUILD_DIR"
-    fi
-
-    # Create build directory
+    
     mkdir -p "$BUILD_DIR"
-    cd "$BUILD_DIR"
+    cd "$BUILD_DIR" || { print_error "Failed to enter build directory"; exit 1; }
 
-    # Set the generator type based on build type
+    local cmake_cmd="cmake .. "
+    local cmake_flags=()
+    
+    # Common flags
+    cmake_flags+=("-Dmorninglang_DEVELOPER_MODE=$DEVELOPER_MODE")
+    
     if [ "$build_type" == "MultiConfig" ]; then
-        # For multi-configuration generators (e.g., Visual Studio)
-        print_info "Generating for multi-configuration generator (e.g., Visual Studio)"
-        cmake -S .. -B . || { print_error "Configuration failed"; exit 1; }
+        print_info "Using multi-configuration generator"
+        GENERATOR_TYPE="MultiConfig"
+        cmake_flags+=("-DCMAKE_CONFIGURATION_TYPES=Debug;Release;RelWithDebInfo")
     else
-        # For single-configuration generators (e.g., Makefiles)
-        print_info "Generating for single-configuration generator (Unix Makefiles)"
-        cmake -S .. -B . -D CMAKE_BUILD_TYPE=Release || { print_error "Configuration failed"; exit 1; }
+        print_info "Using single-configuration generator"
+        GENERATOR_TYPE="Unix Makefiles"
+        cmake_flags+=("-DCMAKE_BUILD_TYPE=$CONFIG_MODE")
     fi
+
+    # Full CMake command
+    cmake_cmd+="${cmake_flags[*]}"
+    print_command "$cmake_cmd"
+    
+    # Execute CMake
+    echo
+    if ! eval "$cmake_cmd"; then
+        echo
+        print_error "Configuration failed"
+        cd ..
+        exit 1
+    fi
+    echo
 
     cd ..
     print_success "Configuration completed!"
 }
 
 # Function to build the project
-function build_project() {
+build_project() {
     local build_type="$1"
     print_header "Building project ($build_type build)"
+    
     if [ ! -d "$BUILD_DIR" ]; then
-        print_error "Build folder ($BUILD_DIR) not found! Please configure first."
+        print_error "Build directory not found: $BUILD_DIR"
         exit 1
     fi
 
-    cd "$BUILD_DIR"
+    cd "$BUILD_DIR" || { print_error "Failed to enter build directory"; exit 1; }
 
-    print_info "Build Project"
-
-    # Build with or without multi-configuration support
+    local build_cmd=""
     if [ "$build_type" == "MultiConfig" ]; then
-        cmake --build . --config Release || { print_error "Build failed"; exit 1; }
+        build_cmd="cmake --build . --config $CONFIG_MODE"
     else
-        cmake . -Ddomkrat3d_DEVELOPER_MODE=ON || { print_error "Build failed"; exit 1; }
+        build_cmd="cmake --build . -j $(nproc)"
     fi
-	
-    print_info "Build Examples"
 
-	cd examples/
-    make || { print_error "Build Examples failed"; exit 1; }
-    cd ..
+    print_command "$build_cmd"
+    
+    # Execute build
+    echo
+    if ! eval "$build_cmd"; then
+        echo
+        print_error "Build failed"
+        cd ..
+        exit 1
+    fi
+    echo
 
+    print_success "Build completed successfully!"
     cd ..
-    print_success "Build finished successfully!"
 }
 
 # Function to run tests
-function run_tests() {
-    local build_type="$1"
-    local test_dir="$BUILD_DIR/test"
-
-    # If test directory does not exist, build tests first
+run_tests() {
+    print_header "Running test suite"
+    
+    local test_dir="$BUILD_DIR/bin/test"
     if [ ! -d "$test_dir" ]; then
-        print_warning "Test directory ($test_dir) not found. Building tests..."
-        build_tests "$build_type"
+        print_error "Test directory not found: $test_dir"
+        exit 1
     fi
 
-    echo -e "${CYAN}[+] Running tests...${NC}\n"
-    # Assuming tests are run via ctest in the test directory
-    (cd "$test_dir" && cmake --build . && ./domkrat3d_test)
-    # echo -e "\n"
-    if [ $? -eq 0 ]; then
-        print_success "All tests passed successfully!"
-    else
-        print_error "Some tests failed!"
+    local tests=()
+    while IFS= read -r -d $'\0' test_exec; do
+        tests+=("$test_exec")
+    done < <(find "$test_dir" -type f -executable -print0)
+
+    if [ ${#tests[@]} -eq 0 ]; then
+        print_error "No test executables found in $test_dir"
+        exit 1
     fi
+
+    print_info "Found ${#tests[@]} test executables"
+    local passed=0
+    local failed=0
+
+    for test_exec in "${tests[@]}"; do
+        local test_name=$(basename "$test_exec")
+        print_info "Running test: $test_name"
+        
+        # Execute test
+        echo
+        if "$test_exec"; then
+            echo
+            print_success "$test_name: PASSED"
+            ((passed++))
+        else
+            echo
+            print_error "$test_name: FAILED"
+            ((failed++))
+        fi
+    done
+
+    print_header "Test Results"
+    echo -e "Total tests: ${#tests[@]}"
+    echo -e "${GREEN}Passed: $passed${NC}"
+    echo -e "${RED}Failed: $failed${NC}"
+    
+    if [ "$failed" -gt 0 ]; then
+        print_error "Some tests failed!"
+        exit 1
+    fi
+
+    print_success "All tests passed successfully!"
 }
 
-# Function to build tests
-function build_tests() {
-    local build_type="$1"
-    print_header "Building tests"
-    # Assuming tests are part of the main project and can be built via make target
-    cd "$BUILD_DIR"
-    if [ "$build_type" == "MultiConfig" ]; then
-        cmake . -Ddomkrat3d_DEVELOPER_MODE=ON --config Release || { print_error "Failed to build tests"; exit 1; }
-    else
-        cmake . -Ddomkrat3d_DEVELOPER_MODE=ON || { print_error "Failed to build tests"; exit 1; }
+# Function to install the project
+install_project() {
+    print_header "Installing project"
+    
+    if [ ! -d "$BUILD_DIR" ]; then
+        print_error "Build directory not found: $BUILD_DIR"
+        exit 1
     fi
-    cd ..
-    print_success "Tests built successfully!"
 
+    cd "$BUILD_DIR" || { print_error "Failed to enter build directory"; exit 1; }
+
+    local install_cmd=""
+    if [ "$GENERATOR_TYPE" == "MultiConfig" ]; then
+        install_cmd="cmake --install . --config $CONFIG_MODE"
+    else
+        install_cmd="cmake --install ."
+    fi
+
+    print_command "$install_cmd"
+    
+    # Execute install
+    echo
+    if ! eval "$install_cmd"; then
+        echo
+        print_error "Installation failed"
+        cd ..
+        exit 1
+    fi
+    echo
+
+    print_success "Installation completed!"
+    cd ..
 }
 
 # Usage instructions
-function usage() {
+usage() {
     echo -e "${YELLOW}Usage:${NC} $0 [command] [option]"
     echo -e "Commands:"
-    echo -e "  configure [single|multi]  — Configure the project (single / multi configuration)"
-    echo -e "  build [single|multi]      — Build the project"
-    echo -e "  test [single|multi]       — Run tests"
-    echo -e "  install [single|multi]    — Install the project"
-    echo -e "  all [single|multi]        — Run all steps: configure, build, test"
+    echo -e "  configure [single|multi]  - Configure project"
+    echo -e "  build [single|multi]      - Build project"
+    echo -e "  test                      - Run all tests"
+    echo -e "  install [single|multi]    - Install project"
+    echo -e "  clean                     - Clean build directory"
+    echo -e "  all [single|multi]        - Configure + Build"
+    echo -e "  alldev [single|multi]     - Dev build + Tests"
     echo -e ""
-    echo -e "Example: ${YELLOW}$0 all single${NC} — fully build and test in single configuration mode"
+    echo -e "Options:"
+    echo -e "  single   - Single-config generator (default)"
+    echo -e "  multi    - Multi-config generator"
+    echo -e ""
+    echo -e "Examples:"
+    echo -e "  ${YELLOW}$0 all single${NC}   - Full build (single config)"
+    echo -e "  ${YELLOW}$0 alldev multi${NC} - Developer build with tests"
 }
 
 # Main script execution
@@ -160,16 +270,17 @@ if [ $# -lt 1 ]; then
 fi
 
 COMMAND=$1
-OPTION=${2:-single}  # Default is 'single' if not provided
+OPTION=${2:-single}  # Default to 'single'
 
 case "$COMMAND" in
     configure)
         if [ "$OPTION" == "multi" ]; then
-            configure_build "MultiConfig"
+            configure_project "MultiConfig"
         else
-            configure_build "SingleConfig"
+            configure_project "SingleConfig"
         fi
         ;;
+        
     build)
         if [ "$OPTION" == "multi" ]; then
             build_project "MultiConfig"
@@ -177,39 +288,50 @@ case "$COMMAND" in
             build_project "SingleConfig"
         fi
         ;;
+        
     test)
-        if [ "$OPTION" == "multi" ]; then
-            run_tests "MultiConfig"
-        else
-            run_tests "SingleConfig"
-        fi
+        run_tests
         ;;
+        
     install)
-        echo -e "${BLUE}[+] Installing the project...${NC}"
-        cd "$BUILD_DIR"
         if [ "$OPTION" == "multi" ]; then
-            cmake --install . --config Release
+            install_project "MultiConfig"
         else
-            cmake --install .
+            install_project "SingleConfig"
         fi
-        cd ..
-        print_success "Installation complete!"
         ;;
+        
+    clean)
+        clean_build_dir
+        ;;
+        
     all)
         if [ "$OPTION" == "multi" ]; then
-            configure_build "MultiConfig"
+            configure_project "MultiConfig"
             build_project "MultiConfig"
-            run_tests "MultiConfig"
         else
-            configure_build "SingleConfig"
+            configure_project "SingleConfig"
             build_project "SingleConfig"
-            run_tests "SingleConfig"
         fi
         ;;
+        
+    alldev)
+        DEVELOPER_MODE="ON"
+        if [ "$OPTION" == "multi" ]; then
+            configure_project "MultiConfig"
+            build_project "MultiConfig"
+        else
+            configure_project "SingleConfig"
+            build_project "SingleConfig"
+        fi
+        run_tests
+        ;;
+        
     *)
         usage
         exit 1
         ;;
 esac
 
-# End of script
+print_success "Operation [$COMMAND] completed successfully!"
+exit 0

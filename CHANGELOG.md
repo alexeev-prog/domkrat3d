@@ -1,3 +1,9 @@
+commit b9f4fe9ea79e55640e9ef9eed44a56b3baee5e48
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Thu Jun 12 01:09:33 2025 +0700
+
+    update codestyle, improve scripts
+
 commit 777c96f30ac4924f7a3dad6657258b8644bdc9eb
 Author: Alexeev Bronislav <alexeev.dev@mail.ru>
 Date:   Mon May 26 17:37:44 2025 +0700

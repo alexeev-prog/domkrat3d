@@ -53,17 +53,17 @@
  */
 class DOMKRAT3D_EXPORT exported_class {
   public:
-    /**
-     * @brief Initializes the name field to the name of the project
-     */
-    exported_class();
+	/**
+	 * @brief Initializes the name field to the name of the project
+	 */
+	exported_class();
 
-    /**
-     * @brief Returns a non-owning pointer to the string stored in this class
-     */
-    auto name() const -> char const*;
+	/**
+	 * @brief Returns a non-owning pointer to the string stored in this class
+	 */
+	auto name() const -> char const*;
 
   private:
-    DOMKRAT3D_SUPPRESS_C4251
-    std::string m_name;
+	DOMKRAT3D_SUPPRESS_C4251
+	std::string m_name;
 };
