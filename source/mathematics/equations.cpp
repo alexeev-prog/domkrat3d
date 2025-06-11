@@ -13,8 +13,7 @@ namespace mathematics::equations {
         return x;
     }
 
-    auto half_division_finding_root(double (*f_hd_eq)(double), double a, double b,
-                                    double dx) -> double {
+    auto half_division_finding_root(double (*f_hd_eq)(double), double a, double b, double dx) -> double {
         double x = (a + b) / 2;
 
         while ((b - a) / 2 > dx) {
@@ -42,16 +41,27 @@ namespace mathematics::equations {
         return x;
     }
 
-    auto f_hd_eq(double x) -> double { return 0.5 * cos(x) - x; }
+    auto f_hd_eq(double x) -> double {
+        return 0.5 * cos(x) - x;
+    }
 
-    auto g_hd_eq(double x) -> double { return exp(-x) - x; }
+    auto g_hd_eq(double x) -> double {
+        return exp(-x) - x;
+    }
 
-    auto h_hg_eq(double x) -> double { return x * x - 5 * x + 6; }
+    auto h_hg_eq(double x) -> double {
+        return x * x - 5 * x + 6;
+    }
 
-    auto f_eq(double x) -> double { return 0.5 * cos(x); }
+    auto f_eq(double x) -> double {
+        return 0.5 * cos(x);
+    }
 
-    auto g_eq(double x) -> double { return exp(-x); }
+    auto g_eq(double x) -> double {
+        return exp(-x);
+    }
 
-    auto h_eq(double x) -> double { return (x * x + 6) / 5; }
-}  // namespace mathematics::equations
- 
+    auto h_eq(double x) -> double {
+        return (x * x + 6) / 5;
+    }
+}    // namespace mathematics::equations

@@ -53,3 +53,5 @@ flake.lock
 .envrc
 .report_log.txt
 docs/VulkanInDomkrat/.obsidian
+source/report.html
+report.html

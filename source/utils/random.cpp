@@ -1,8 +1,9 @@
 #include <cstdlib>
 #include <ctime>
 
-#include "domkrat3d/tracelogger.hpp"
 #include "domkrat3d/utils/random.hpp"
+
+#include "domkrat3d/tracelogger.hpp"
 
 auto generate_random_float() -> float {
     LOG_TRACE

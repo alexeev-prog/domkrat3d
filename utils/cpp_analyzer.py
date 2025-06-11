@@ -23,7 +23,7 @@ class CppCodeInspector:
     
     def __init__(self, config_path: str = 'cpp_analysis.json'):
         self.config = self._load_config(config_path)
-        self.logger = logging.getLogger(self.__class__.__name__)
+        self.logger = logging.getLogger(__name__)
         self.patterns = self._compile_patterns()
 
     def _load_config(self, config_path: str) -> Dict[str, Any]:
@@ -32,12 +32,11 @@ class CppCodeInspector:
             with open(config_path, 'r', encoding='utf-8') as f:
                 return json.load(f)
         except (FileNotFoundError, json.JSONDecodeError) as e:
-            self.logger.warning("Using default config: %s", str(e))
+            # self.logger.warning("Using default config: %s", str(e))
             return {
                 "legacy_patterns": {
-                    "raw_pointers": true,
-                    "c_headers": true,
-                    "cstyle_casts": true
+                    "c_headers": True,
+                    "cstyle_casts": True
                 },
                 "file_extensions": [".cpp", ".hpp"],
                 "exclude_dirs": ["build", "third_party"]
@@ -46,10 +45,8 @@ class CppCodeInspector:
     def _compile_patterns(self) -> Dict[str, Pattern]:
         """Compile regex patterns based on config"""
         patterns = {}
-        if self.config.get('legacy_patterns', {}).get('raw_pointers'):
-            patterns['raw_pointers'] = re.compile(r'\b\w+\s*\*\s*\w+\b')
         if self.config.get('legacy_patterns', {}).get('c_headers'):
-            patterns['c_headers'] = re.compile(r'#include\s+<(stdio|stdlib|string)\.h>')
+            patterns['c_headers'] = re.compile(r'#include\s+<(stdio|stdlib|cstdlib)\.h>')
         return patterns
 
     def analyze_directory(self, path: str) -> Dict[str, Any]:

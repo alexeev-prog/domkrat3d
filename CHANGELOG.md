@@ -1,3 +1,9 @@
+commit 777c96f30ac4924f7a3dad6657258b8644bdc9eb
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Mon May 26 17:37:44 2025 +0700
+
+    docs: small changes
+
 commit 9cfe2420eebc8c87b63669c86ef3f6e41d5ef91a
 Author: Alexeev Bronislav <alexeev.dev@mail.ru>
 Date:   Fri May 23 01:43:07 2025 +0700
