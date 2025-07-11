@@ -50,14 +50,6 @@ let
 in
 pkgs.mkShell {
   nativeBuildInputs = with pkgs; [
-    (vscode-with-extensions.override {
-      vscodeExtensions = with vscode-extensions; [
-      	jdinhlife.gruvbox
-        ms-vscode.cpptools
-        ms-vscode.cpptools-extension-pack
-        llvm-vs-code-extensions.vscode-clangd
-      ];
-    })
     cppcheck
     clang-tools
     codespell

@@ -1,106 +1,51 @@
-#!/usr/bin/env python3
-# Python program to format C/C++ files using clang-format 
 import os
-import sys
-from pathlib import Path
 import subprocess
+import argparse
 
-# Define color codes for output
-RED = '\033[31m'
-GREEN = '\033[32m'
-YELLOW = '\033[33m'
-NC = '\033[0m'  # No Color
-BOLD = '\033[1m'  # No Color
+def find_source_files(root_dir, ignore_dirs):
+    source_files = []
+    for dirpath, dirnames, filenames in os.walk(root_dir):
+        # Remove ignored directories from dirnames to prevent walking into them
+        dirnames[:] = [d for d in dirnames if d not in ignore_dirs]
+        
+        for filename in filenames:
+            if filename.endswith(('.c', '.cpp', '.h', '.hpp', '.cc', '.cxx', '.hh')):
+                source_files.append(os.path.join(dirpath, filename))
+    return source_files
 
-# File Extension filter. You can add new extension 
-cpp_extensions = (".cxx",".cpp",".c", ".hxx", ".hh", ".cc", ".hpp") 
-IGNORED_DIRS = ['build', '.git', 'cmake', 'docs', 'utils', 'CMakeFiles']
-
-CLANG_FORMAT = 'clang-format'
-SPACETABS = './space2tabs.sh'
-
-print(f'domkrat3d code-formatter: {CLANG_FORMAT}; Extensions: {" ".join(cpp_extensions)}')
-
-
-def print_usage():
-	"""Print the usage instructions."""
-	print(f"{YELLOW}Usage: convert_tabs(file_path, tab_size, conversion_type){NC}")
-	print(f"<conversion_type>: 'spaces' or 'tabs'")
-
-
-def print_error(message):
-	"""Print error messages."""
-	print(f"{RED}Error: {message}{NC}")
-
-
-def validate_positive_integer(value):
-	"""Validate if the value is a positive integer."""
-	try:
-		int_value = int(value)
-		if int_value < 1:
-			raise ValueError
-		return int_value
-	except ValueError:
-		print_error("Tab size must be a positive integer.")
-		return None
-
-
-def file_exists(file_path):
-	"""Check if the file exists."""
-	if not os.path.isfile(file_path):
-		print_error(f"File not found: {file_path}")
-		return False
-	return True
-
-
-def convert_tabs(file_path, tab_size, conversion_type):
-	"""Convert tabs to spaces or spaces to tabs based on conversion type."""
-	try:
-		if conversion_type == "spaces":
-			print(f"{BOLD}Converting tabs to spaces...{NC}")
-			subprocess.run(["expand", "-t", str(tab_size), file_path], stdout=open(f"{file_path}.tmp", "w"))
-		elif conversion_type == "tabs":
-			print(f"{BOLD}Converting spaces to tabs...{NC}")
-			subprocess.run(["unexpand", "-t", str(tab_size), file_path], stdout=open(f"{file_path}.tmp", "w"))
-		else:
-			print_error(f"Invalid conversion type: {conversion_type}. Use 'spaces' or 'tabs'.")
-			return
-
-		os.replace(f"{file_path}.tmp", file_path)
-		print(f"{GREEN}Conversion completed successfully: {file_path}{NC}")
-	except Exception as e:
-		print_error(f"Conversion failed: {str(e)}")
-
-
-def convert_file(file_path, tab_size, conversion_type):
-	"""Main function to manage conversion."""
-	tab_size = validate_positive_integer(tab_size)
-	if tab_size is None:
-		return
-	
-	if not file_exists(file_path):
-		return
-
-	convert_tabs(file_path, tab_size, conversion_type)
-	
+def format_files(files, clang_format, style):
+    for file in files:
+        try:
+            cmd = [clang_format, '-i', '--style', style, file]
+            subprocess.run(cmd, check=True)
+            print(f"\033[32mFormatted:\033[0m {file}")
+        except subprocess.CalledProcessError as e:
+            print(f"\033[31mError formatting {file}:\033[0m {e}")
 
 def main():
-	# Set the current working directory for scanning c/c++ sources (including 
-	# header files) and apply the clang formatting 
-	# Please note "-style" is for standard style options 
-	# and "-i" is in-place editing 
-	
-	for root, dirs, files in os.walk(os.getcwd()):
-		if len(set(root.split('/')).intersection(IGNORED_DIRS)) > 0:
-			continue
-		for file in files: 
-			if file.endswith(cpp_extensions):
-				print(f"{BOLD}Format {file}: {root}/{file}{NC}")
-				os.system(f'clang-tidy --fix {root}/{file}')
-				os.system(f"{CLANG_FORMAT} -i -style=file {root}/{file}")
-				print(f"{GREEN}Formatting completed successfully: {root}/{file}{NC}")
-				convert_file(f'{root}/{file}', "4", "tabs")
+    parser = argparse.ArgumentParser(description="Recursively format C/C++ files with clang-format")
+    parser.add_argument("root_dir", help="Root directory to search for source files")
+    parser.add_argument("--ignore", nargs="+", default=[], help="Directories to ignore")
+    parser.add_argument("--clang-format", default="clang-format", help="Path to clang-format executable")
+    parser.add_argument("--style", default="file", help="Formatting style (file/Google/LLVM/etc.)")
+    
+    args = parser.parse_args()
+    
+    print("\033[36m=== C/C++ Source Formatter ===\033[0m")
+    print(f"\033[33mRoot directory:\033[0m {args.root_dir}")
+    print(f"\033[33mIgnored directories:\033[0m {args.ignore or 'None'}")
+    print(f"\033[33mStyle:\033[0m {args.style}")
+    print("\033[36m" + "=" * 30 + "\033[0m")
+    
+    source_files = find_source_files(args.root_dir, args.ignore)
+    
+    if not source_files:
+        print("\033[33mNo C/C++ files found to format.\033[0m")
+        return
+    
+    print(f"\033[33mFound {len(source_files)} files to format:\033[0m")
+    format_files(source_files, args.clang_format, args.style)
+    print("\033[32mFormatting complete!\033[0m")
 
-
-if __name__ == '__main__':
-	main()
+if __name__ == "__main__":
+    main()
