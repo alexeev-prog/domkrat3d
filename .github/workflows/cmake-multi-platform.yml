@@ -26,9 +26,18 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Install dependencies
+    - name: Install Vulkan SDK
       run: |
+        # Добавляем репозиторий LunarG для Vulkan SDK
         sudo apt-get update
+        sudo apt-get install -y wget software-properties-common
+        wget -qO - https://packages.lunarg.com/lunarg-signing-key-pub.asc | sudo apt-key add -
+        sudo wget -qO /etc/apt/sources.list.d/lunarg-vulkan-jammy.list https://packages.lunarg.com/vulkan/lunarg-vulkan-jammy.list
+        sudo apt update
+        sudo apt install -y vulkan-sdk
+
+    - name: Install other dependencies
+      run: |
         sudo apt-get install -y \
           build-essential \
           cmake \
@@ -37,8 +46,6 @@ jobs:
           libx11-dev \
           libxkbcommon-dev \
           libxcb-keysyms1-dev \
-          libvulkan-dev \
-          vulkan-tools \
           libglfw3-dev \
           libglew-dev \
           libglm-dev \
@@ -46,7 +53,6 @@ jobs:
           libsdl2-mixer-dev \
           portaudio19-dev \
           libgtest-dev \
-          libgoogle-glog-dev \
           freeglut3-dev \
           mesa-common-dev \
           libglu1-mesa-dev
