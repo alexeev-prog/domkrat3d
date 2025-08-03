@@ -45,7 +45,6 @@ jobs:
           libsdl2-dev \
           libsdl2-mixer-dev \
           portaudio19-dev \
-          libentt-dev \
           libgtest-dev \
           libgoogle-glog-dev \
           freeglut3-dev \
