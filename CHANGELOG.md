@@ -1,3 +1,24 @@
+commit 9605be9b84599b9371377f673b2e189fc7fedf82
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Sun Aug 3 15:44:16 2025 +0700
+
+    Create cmake-multi-platform.yml
+
+commit b92f21119e1d2f719b3dcdfee390d3066e72b136
+Merge: 6eb28aa f35294e
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Sun Aug 3 15:43:11 2025 +0700
+
+    Merge pull request #1 from alexeev-prog/dev
+    
+    show private members in docs
+
+commit f35294e818289c0eb0c3c388290c819cecf87a36
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Sun Aug 3 15:40:52 2025 +0700
+
+    show private members in docs
+
 commit 6eb28aaad8e295bbae9ee0f9d70fef9243f22696
 Author: Alexeev Bronislav <alexeev.dev@mail.ru>
 Date:   Sun Aug 3 15:35:28 2025 +0700
