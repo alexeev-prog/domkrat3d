@@ -1,3 +1,9 @@
+commit 028a232640ec82a1e7e894ea6e54d25e6e3c6a5b
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Sun Aug 3 16:04:17 2025 +0700
+
+    fix cmake workflow
+
 commit deaa8190034e253b2e0d97a4437722429c9d688f
 Author: Alexeev Bronislav <alexeev.dev@mail.ru>
 Date:   Sun Aug 3 15:55:09 2025 +0700
