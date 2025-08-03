@@ -1,3 +1,9 @@
+commit 6eb28aaad8e295bbae9ee0f9d70fef9243f22696
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Sun Aug 3 15:35:28 2025 +0700
+
+    fix build script and shell.nix
+
 commit 5db7379b51ff13739eef4c615111f69f417d004e
 Author: Alexeev Bronislav <alexeev.dev@mail.ru>
 Date:   Sat Jul 12 05:38:32 2025 +0700
