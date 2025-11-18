@@ -1,14 +1,14 @@
-"""
-Advanced C++ code analysis with configurable rules and JSON output
-"""
+"""Advanced C++ code analysis with configurable rules and JSON output."""
 
 import argparse
 import json
 import logging
-import re
-from pathlib import Path
-from typing import Dict, List, Pattern, Any, Set
 import multiprocessing
+import re
+import sys
+from pathlib import Path
+from re import Pattern
+from typing import Any
 
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
@@ -16,21 +16,21 @@ logging.basicConfig(
 
 
 class CodeAnalysisError(Exception):
-    """Base exception for code analysis failures"""
+    """Base exception for code analysis failures."""
 
 
 class CppCodeInspector:
-    """Comprehensive C++ code analyzer with legacy pattern detection"""
+    """Comprehensive C++ code analyzer with legacy pattern detection."""
 
     def __init__(self, config_path: str = "cpp_analysis.json"):
         self.config = self._load_config(config_path)
         self.logger = logging.getLogger(__name__)
         self.patterns = self._compile_patterns()
 
-    def _load_config(self, config_path: str) -> Dict[str, Any]:
-        """Load JSON configuration with fallback"""
+    def _load_config(self, config_path: str) -> dict[str, Any]:
+        """Load JSON configuration with fallback."""
         try:
-            with open(config_path, "r", encoding="utf-8") as f:
+            with open(config_path, encoding="utf-8") as f:
                 return json.load(f)
         except (FileNotFoundError, json.JSONDecodeError):
             # self.logger.warning("Using default config: %s", str(e))
@@ -40,8 +40,8 @@ class CppCodeInspector:
                 "exclude_dirs": ["build", "third_party"],
             }
 
-    def _compile_patterns(self) -> Dict[str, Pattern]:
-        """Compile regex patterns based on config"""
+    def _compile_patterns(self) -> dict[str, Pattern]:
+        """Compile regex patterns based on config."""
         patterns = {}
         if self.config.get("legacy_patterns", {}).get("c_headers"):
             patterns["c_headers"] = re.compile(
@@ -49,8 +49,8 @@ class CppCodeInspector:
             )
         return patterns
 
-    def analyze_directory(self, path: str) -> Dict[str, Any]:
-        """Analyze all C++ files in directory"""
+    def analyze_directory(self, path: str) -> dict[str, Any]:
+        """Analyze all C++ files in directory."""
         try:
             target_path = Path(path).resolve()
             if not target_path.exists():
@@ -61,8 +61,8 @@ class CppCodeInspector:
         except KeyboardInterrupt:
             raise CodeAnalysisError("Analysis interrupted by user")
 
-    def _collect_files(self, path: Path) -> Set[Path]:
-        """Collect files respecting config rules"""
+    def _collect_files(self, path: Path) -> set[Path]:
+        """Collect files respecting config rules."""
         all_files = set()
         for ext in self.config["file_extensions"]:
             all_files.update(path.rglob(f"*{ext}"))
@@ -73,8 +73,8 @@ class CppCodeInspector:
             if not any(d in f.parts for d in self.config["exclude_dirs"])
         }
 
-    def _process_files(self, files: Set[Path]) -> Dict[str, Any]:
-        """Process files using multiprocessing"""
+    def _process_files(self, files: set[Path]) -> dict[str, Any]:
+        """Process files using multiprocessing."""
         with multiprocessing.Pool() as pool:
             results = pool.map(self._analyze_file, files)
 
@@ -85,11 +85,11 @@ class CppCodeInspector:
 
         return report
 
-    def _analyze_file(self, file_path: Path) -> Dict[str, List[str]]:
-        """Analyze single file for legacy patterns"""
+    def _analyze_file(self, file_path: Path) -> dict[str, list[str]]:
+        """Analyze single file for legacy patterns."""
         results = {pattern: [] for pattern in self.patterns}
         try:
-            with open(file_path, "r", encoding="utf-8") as f:
+            with open(file_path, encoding="utf-8") as f:
                 content = f.read()
                 for pattern_name, regex in self.patterns.items():
                     matches = regex.findall(content)
@@ -103,7 +103,7 @@ class CppCodeInspector:
 
 
 def main():
-    """Command line interface for code analysis"""
+    """Command line interface for code analysis."""
     parser = argparse.ArgumentParser(
         description="Analyze C++ code for legacy patterns",
         epilog="Example: python cpp_analyzer.py src/ -c config.json",
@@ -128,8 +128,8 @@ def main():
             print(json.dumps(report, indent=2))
 
     except CodeAnalysisError as e:
-        logging.error("Analysis failed: %s", str(e))
-        exit(1)
+        logging.exception("Analysis failed: %s", str(e))
+        sys.exit(1)
 
 
 if __name__ == "__main__":

@@ -1,13 +1,12 @@
-"""
-Comprehensive Git repository analysis tool
-"""
+"""Comprehensive Git repository analysis tool."""
 
 import argparse
 import json
 import logging
 import subprocess
+import sys
 from pathlib import Path
-from typing import Dict, List, Any
+from typing import Any
 
 # Configure logging
 logging.basicConfig(
@@ -16,11 +15,11 @@ logging.basicConfig(
 
 
 class GitAnalysisError(Exception):
-    """Custom exception for Git analysis failures"""
+    """Custom exception for Git analysis failures."""
 
 
 class GitRepoInspector:
-    """Advanced Git repository analyzer with configurable reporting"""
+    """Advanced Git repository analyzer with configurable reporting."""
 
     def __init__(self, repo_path: str = "."):
         self.repo_path = Path(repo_path).resolve()
@@ -33,12 +32,12 @@ class GitRepoInspector:
         }
 
     def _validate_repository(self) -> None:
-        """Verify valid Git repository structure"""
+        """Verify valid Git repository structure."""
         if not (self.repo_path / ".git").exists():
             raise GitAnalysisError(f"Not a Git repository: {self.repo_path}")
 
-    def get_full_report(self) -> Dict[str, Any]:
-        """Generate comprehensive repository report"""
+    def get_full_report(self) -> dict[str, Any]:
+        """Generate comprehensive repository report."""
         return {
             "metadata": self._get_basic_metadata(),
             "branches": self._get_branches(),
@@ -48,8 +47,8 @@ class GitRepoInspector:
             "risk_analysis": self._analyze_risks(),
         }
 
-    def _get_basic_metadata(self) -> Dict[str, Any]:
-        """Get core repository metadata"""
+    def _get_basic_metadata(self) -> dict[str, Any]:
+        """Get core repository metadata."""
         return {
             "path": str(self.repo_path),
             "current_branch": self._run_git_cmd(["rev-parse", "--abbrev-ref", "HEAD"]),
@@ -58,8 +57,8 @@ class GitRepoInspector:
             "repo_size": self._calculate_repo_size(),
         }
 
-    def _get_remotes(self) -> List[Dict[str, str]]:
-        """Get list of configured remotes"""
+    def _get_remotes(self) -> list[dict[str, str]]:
+        """Get list of configured remotes."""
         remotes = []
         try:
             output = self._run_git_cmd(["remote", "-v"])
@@ -73,14 +72,14 @@ class GitRepoInspector:
                     if not any(r["name"] == name for r in remotes):
                         remotes.append({"name": name, "url": url})
         except subprocess.CalledProcessError as e:
-            self.logger.error("Failed to get remotes: %s", e.stderr)
+            self.logger.exception("Failed to get remotes: %s", e.stderr)
         return remotes
 
-    def _run_git_cmd(self, args: List[str]) -> str:
-        """Execute Git command with error handling"""
+    def _run_git_cmd(self, args: list[str]) -> str:
+        """Execute Git command with error handling."""
         try:
             result = subprocess.run(
-                ["git"] + args,
+                ["git", *args],
                 cwd=self.repo_path,
                 capture_output=True,
                 text=True,
@@ -89,14 +88,14 @@ class GitRepoInspector:
             )
             return result.stdout.strip()
         except subprocess.CalledProcessError as e:
-            self.logger.error("Command failed: %s", " ".join(e.cmd))
+            self.logger.exception("Command failed: %s", " ".join(e.cmd))
             raise GitAnalysisError(f"Git error: {e.stderr}") from e
 
     # Other existing methods remain unchanged...
 
 
 def main():
-    """Command line interface for Git analysis"""
+    """Command line interface for Git analysis."""
     parser = argparse.ArgumentParser(
         description="Generate detailed Git repository report",
         epilog="Example: python git_analyzer.py /path/to/repo -o report.json",
@@ -117,8 +116,8 @@ def main():
             print(json.dumps(report, indent=2))
 
     except GitAnalysisError as e:
-        logging.error("Analysis failed: %s", str(e))
-        exit(1)
+        logging.exception("Analysis failed: %s", str(e))
+        sys.exit(1)
 
 
 if __name__ == "__main__":
