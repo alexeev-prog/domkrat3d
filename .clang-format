@@ -70,8 +70,8 @@ BraceWrapping:
   AfterFunction: false
   AfterNamespace: false
   AfterObjCDeclaration: false
-  AfterStruct: true
-  AfterUnion: true
+  AfterStruct: false
+  AfterUnion: false
   BeforeCatch: false
   BeforeElse: false
   BeforeLambdaBody: true

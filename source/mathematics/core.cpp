@@ -15,8 +15,7 @@ namespace mathematics {
     auto old_approximate_power(double base, double exponent) -> double {
         LOG_TRACE
 
-        union
-        {
+        union {
             double d;
             long long i;
         } u = {base};
@@ -67,8 +66,7 @@ namespace mathematics {
     auto another_approximate_power(double base, double exponent) -> double {
         LOG_TRACE
 
-        union
-        {
+        union {
             double d;
             int x[2];
         } u = {base};
